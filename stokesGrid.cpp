@@ -100,6 +100,7 @@ void stokesGrid::solve() {
 	//prefactors
 	double dxDy = dx/dy;
 	double dyDx = dy/dx;
+	double pMean;
 	makeResidualsHuge();
 	while(!isConverged() && count < MAXITS) {
 
@@ -158,13 +159,23 @@ void stokesGrid::solve() {
 		}
 
 		//update pressure
+		pMean = 0.;
 		for(i=0; i<mNx-1; ++i) {
 			for(j=0; j<mNy-1; ++j) {
 				tempRes = -(u(i+1,j)-u(i,j)) - dxDy*(v(i,j+1)-v(i,j));
 				flowData[pI(i,j)] += omegaP*tempRes;
+				pMean += flowData[pI(i,j)];
 				if( fabs(tempRes) > maxPRes) maxPRes = fabs(tempRes);
 			}
 		}
+
+		pMean /= (double) (mNx-1)*(mNy-1);
+		for(i=0; i<mNx-1; ++i) {
+			for(j=0; j<mNy-1; ++j) {
+				flowData[pI(i,j)] -= pMean;
+			}
+		}
+
 		count++;
 	}
 	if(count==MAXITS) {
