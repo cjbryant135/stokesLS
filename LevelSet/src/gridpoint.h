@@ -1,0 +1,71 @@
+/*************************************************
+    gridpoint.h
+
+    $Header: gridpoint.h,v 1.1 99/02/04 14:31:43 chopp Exp $
+
+    $Log:       gridpoint.h,v $
+    * Revision 1.1  99/02/04  14:31:43  14:31:43  chopp (David Chopp)
+    * Initial revision
+    * 
+    *************************************************/
+
+#ifndef __GRIDPOINT_H__
+#define __GRIDPOINT_H__
+
+namespace levelset {
+        
+    class GridPoint 
+    {
+    public:
+
+        double *data;
+        int    *idata;
+        int    dlen, ilen;
+        int    swidth;
+
+    GridPoint(void) : data(NULL), idata(NULL), dlen(0), ilen(0), swidth(0) {;}
+
+    GridPoint(const int d, const int i = 0)
+        : data(NULL), idata(NULL), dlen(d), ilen(i), swidth(0)
+        {CreateData(d, i);}
+
+    GridPoint(const GridPoint& gp)
+        : data(NULL), idata(NULL), dlen(gp.dlen), ilen(gp.ilen), swidth(0)
+        {CreateData(gp.dlen, gp.ilen); SetData(gp.data, gp.idata);} 
+
+        ~GridPoint(void) 
+        {if (data != NULL) delete[] data; if (idata != NULL) delete[] idata;} 
+
+        void CreateData(const int d, const int i = 0) 
+        {
+            dlen = d;
+            ilen= i;
+            if (dlen > 0) data = new double[dlen];
+            if (ilen > 0) idata = new int[ilen];
+        }
+
+        void SetData(const double* d, const int* i = NULL)
+        {
+            int ii;
+         
+            for (ii=0; ii<dlen; ++ii) data[ii] = d[ii];
+            for (ii=0; ii<ilen; ++ii) idata[ii] = i[ii];
+        }
+
+        GridPoint& operator=(const GridPoint& gp) 
+            {SetData(gp.data, gp.idata); return *this;}
+         
+        inline double operator[](const int n) const {return data[n];}   
+        inline double& operator[](const int n) {return data[n];}
+        inline int operator()(const int n) const {return idata[n];}   
+        inline int& operator()(const int n) {return idata[n];}
+
+        inline double val(const int n) const {return data[n];}   
+        inline double& val(const int n) {return data[n];}
+        inline int ival(const int n) const {return idata[n];}   
+        inline int& ival(const int n) {return idata[n];}
+    };
+        
+}
+
+#endif

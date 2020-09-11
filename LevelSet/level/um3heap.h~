@@ -1,0 +1,65 @@
+/*************************************************
+    um3heap.h
+
+    $Header: um3heap.h,v 1.1 99/02/04 14:39:40 chopp Exp $
+
+    $Log:	um3heap.h,v $
+ * Revision 1.1  99/02/04  14:39:40  14:39:40  chopp (David Chopp)
+ * Initial revision
+ * 
+*************************************************/
+
+#ifndef __UM3HEAP_H__
+#define __UM3HEAP_H__
+
+#include "uniformmesh3d.h"
+#include "heapt.h"
+#include "um3heapelt.h"
+
+namespace levelset {
+	
+class UniformMesh3D_Heap : public Heap< HeapElement3D > {
+
+   UniformMesh3D* mesh;
+
+public:
+
+   UniformMesh3D_Heap(UniformMesh3D* m)
+         : Heap< HeapElement3D >(MinHeap), mesh(m) {;}
+
+   void Change(const int i, const double val, const int ikhi);
+   void Insert(const int i, const int j, const int k, const double val, 
+               const int ikhi);
+//   void Insert(const HeapElement& he);
+   void Extract(int& i, int& j, int& k, const int ikhi);
+
+#ifdef LEVEL_DEBUG
+   void Dump(std::ostream& s = std::cout, const char val = false) const;
+   void Check(const int ikhi) const;
+   friend class UniformMesh3D;
+#endif
+
+private:
+
+   void SortFrom(unsigned int n, const int ikhi);
+   inline void SwapElts(const int i, const int j, const int ikheap)
+      {
+         Swap(mesh->idata_(data[i].Index(0), data[i].Index(1),
+                           data[i].Index(2), ikheap),
+              mesh->idata_(data[j].Index(0), data[j].Index(1),
+                           data[j].Index(2), ikheap));
+         Swap(data[i], data[j]);
+      }
+   inline void MoveElt(const int from, const int to, const int ikheap)
+      {
+         mesh->idata_(data[to].Index(0), data[to].Index(1), data[to].Index(2),
+                      ikheap) = -1;
+         mesh->idata_(data[from].Index(0), data[from].Index(1),
+                      data[from].Index(2), ikheap) = to;
+         data[to] = data[from];
+      }
+};
+
+}
+#endif // __UM3HEAP_H__
+

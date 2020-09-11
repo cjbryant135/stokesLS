@@ -1,0 +1,399 @@
+/*************************************************
+    uniformmesh3d.h
+
+    $Header: uniformmesh3d.h,v 1.1 99/02/04 14:40:21 chopp Exp $
+
+    $Log:	uniformmesh3d.h,v $
+ * Revision 1.1  99/02/04  14:40:21  14:40:21  chopp (David Chopp)
+ * Initial revision
+ * 
+*************************************************/
+
+#ifndef __UNIFORMMESH3D_H__
+#define __UNIFORMMESH3D_H__
+
+#ifndef NO_GRAPHICS
+#include "plotwindow3d.h"
+#endif
+#include "initialfunc3d.h"
+#include "datavec.h"
+#include "utility.h"
+#include "interface.h"
+#include "numtrait.h"
+#ifdef USE_AVS
+#include "avsfield.h"
+#endif
+#include "interface3d.h"
+#include "tricubic.h"
+#include <math.h>
+#include <limits.h>
+#ifdef LEVEL_DEBUG
+#include "debug.h"
+#endif
+
+namespace levelset {
+	
+// Define boundary conditions for differential operators
+// Choices are INWARD (default) and PERIODIC 
+
+#ifndef MESH_ENUMS_DEFINED
+#define MESH_ENUMS_DEFINED
+enum STEPSIZE {StepSize};
+enum BOUNDS {Bounds};
+enum Direction {DLeft = 1, DDown = 2, DRight = 4, DUp = 8,
+                DAhead = 16, DBack = 32};
+enum {Upwind = -1, Downwind = 1};
+#endif
+
+class UM3_HeapElement;
+class UniformMesh3D_Heap;
+class UM3_Boundary;
+class Interface3D;
+
+class UniformMesh3D {
+public:
+   
+   double      *thedata;               // gridpoint array
+   int         datastart;
+   int         maxi, maxj, maxk, maxl; // dimensions of data
+   int         tmaxi, tmaxj, tmaxk;    // total dimensions of data
+   double      dx, dy, dz;             // spatial step sizes
+   double      zero[3];                // physical coordinates for i=0,j=0,k=0
+   int         *theidata;              // integer arrays for grid indexing heap
+   UM3_Boundary* bc;
+
+   inline int Index(const int i, const int j, const int k, const int l=0) const
+      {return(l*tmaxi*tmaxj*tmaxk+i*tmaxj*tmaxk+j*tmaxk+k);}
+   inline int Index00(const int i, const int j, const int k,
+                      const int l=0) const
+      {return(l*tmaxi*tmaxj*tmaxk+i*tmaxj*tmaxk+j*tmaxk+k+datastart);}
+
+public:
+
+   UniformMesh3D(STEPSIZE, const int m, const int n, const int o,
+                 const int sd, const int si,
+                 const double deltax, const double deltay, const double deltaz,
+                 const double zx, const double zy, const double zz,
+                 UM3_Boundary& thebc);
+
+   UniformMesh3D(BOUNDS, const int m, const int n, const int o,
+                 const int sd, const int si,
+                 const double xmin, const double xmax,
+                 const double ymin, const double ymax,
+                 const double zmin, const double zmax,
+                 UM3_Boundary& thebc);
+
+   UniformMesh3D(void) {}
+   
+   virtual ~UniformMesh3D(void);
+
+      // Initialization routines
+   
+   void SetStepSize(const int m, const int n, const int o,
+                    const int sd, const int si,
+                    const double deltax, const double deltay,
+                    const double deltaz, const double zx, const double zy,
+                    const double zz, UM3_Boundary& thebc);
+   void SetBoundsSize(const int m, const int n, const int o,
+                      const int sd, const int si,
+                      const double xmin, const double xmax, 
+                      const double ymin, const double ymax,
+                      const double zmin, const double zmax,
+                      UM3_Boundary& thebc);
+   void SetZero(const double zx, const double zy, const double zz)
+      {zero[0] = zx; zero[1] = zy; zero[2] = zz;}
+   
+   void SetValues(const InitialFunc3D& f, const int wi);
+   void InitInterface(const InitialFunc3D& f, const int wi, const int ktemp,
+                      const int ik1, const int ik2);
+   void SetValues(double (*f)(double,double,double), const int wi);
+	void SetValues(const double* f, const int wi);
+	void SetValues(const double c, const int wi);
+   void InitInterface(double (*fx)(double,double), double (*fy)(double,double),
+                      double (*fz)(double,double), const double start1, 
+                      const double end1, const double start2, 
+                      const double end2, const int func);
+
+      // Information retrieval
+
+   inline double X(const int i) const {return zero[0]+i*dx;} 
+   inline double Y(const int j) const {return zero[1]+j*dy;}
+   inline double Z(const int k) const {return zero[2]+k*dz;}
+   inline double X(const double i) const {return zero[0]+i*dx;} 
+   inline double Y(const double j) const {return zero[1]+j*dy;}
+   inline double Z(const double k) const {return zero[2]+k*dz;}
+   inline int I(const double x) const {return int(floor((x-zero[0])/dx));} 
+   inline int J(const double y) const {return int(floor((y-zero[1])/dy));} 
+   inline int K(const double z) const {return int(floor((z-zero[2])/dz));} 
+
+      // Interface only methods
+
+   void GetInterface(Interface3D& segs, const int wi, const int itmp1,
+   				const int itmp2, const int itmp3, const double value = 0);
+#if 0
+   void UnitNormal(Interface& segs, const int nx, const int ny, 
+                   const int kdx, const int kdy);
+   void NormUpwindGrad(Interface& segs, const int ng, const int d = 0);
+   void Interp(Interface& segs, const int res, const int wi);
+   void ExtendVelocity(const Interface& seg, const int sl,
+                       const int sh, const int k, const int ktemp,
+                       const int ikus, const int ikhi, const int ikmask,
+                       const int kvel);
+#endif
+   
+      // Whole mesh methods
+
+   void NormUpwindGrad(const int v, const int kdxm, const int kdxp,
+                       const int kdym, const int kdyp, const int kdzm,
+                       const int kdzp, const int knorm);
+	void NormUpwindGrad(const int v, const int l, const int knorm, const int dir=1);
+	void NormGrad(const int kdx, const int kdy, const int kdz, const int knorm);
+   void Curvature(const int kdx, const int kdy, const int kdz, const int kdxx,
+                  const int kdxy, const int kdxz, const int kdyy,
+                  const int kdyz, const int kdzz, const int kcurv);
+   inline void Diffusion(const int kdx, const int kdy, const int kdz,
+                         const int kcurv, const int kdiff)
+      {Dss_zero(kcurv, kdx, kdy, kdz, kdiff);}
+	void Weight(double w(const double theta, const double phi),
+					const int kdx, const int kdy, const int kdz, const int kcurv);
+   
+   void Dx_zero(const int k, const int kdx);
+   void Dx_minus(const int k, const int kdx);
+   void Dx_plus(const int k, const int kdx);
+   void Dx_upwind(const int v, const int k, const int kdx);
+   void Dxx_zero(const int k, const int kdxx);
+   void Dy_zero(const int k, const int kdy);
+   void Dy_minus(const int k, const int kdy);
+   void Dy_plus(const int k, const int kdy);
+   void Dy_upwind(const int v, const int k, const int kdy);
+   void Dyy_zero(const int k, const int kdyy);
+   void Dz_zero(const int k, const int kdz);
+   void Dz_minus(const int k, const int kdz);
+   void Dz_plus(const int k, const int kdz);
+   void Dz_upwind(const int v, const int k, const int kdz);
+   void Dzz_zero(const int k, const int kdzz);
+   void Dxy_zero(const int k, const int kdxy);
+   void Dxz_zero(const int k, const int kdxz);
+   void Dyz_zero(const int k, const int kdyz);
+   void Dx_zero_4(const int k, const int kdx);
+   void Dx_minus_4(const int k, const int kdx);
+   void Dx_plus_4(const int k, const int kdx);
+   void Dxx_zero_4(const int k, const int kdxx);
+   void Dy_zero_4(const int k, const int kdy);
+   void Dy_minus_4(const int k, const int kdy);
+   void Dy_plus_4(const int k, const int kdy);
+   void Dyy_zero_4(const int k, const int kdyy);
+   void Dz_zero_4(const int k, const int kdz);
+   void Dz_minus_4(const int k, const int kdz);
+   void Dz_plus_4(const int k, const int kdz);
+   void Dzz_zero_4(const int k, const int kdzz);
+   void Dxy_zero_4(const int k, const int kdxy);
+   void Dxz_zero_4(const int k, const int kdxz);
+   void Dyz_zero_4(const int k, const int kdyz);
+   void Ds_zero(const int kf, const int kdx, const int kdy, const int kdz,
+                const int kds, const int kdt, const int kdu);
+   void Dss_zero(const int kf, const int kdx, const int kdy, const int kdz,
+                 const int kdss);
+   
+   void MinMax(const int l, double& themin, double& themax) const;
+
+   double MaxGrad(const int kdx, const int kdy, const int kdz);
+   double AvgGrad(const int kdx, const int kdy, const int kdz);
+   double Volume(const int l, const double value);
+   
+   void ExtendVelocity(const int ktemp, const int kvel,
+                       const int ikus, const int ikhi, const int ikmask);
+   void Advance(const int k, const int kv, const int knorm, const double dt);
+   void Advance(const int k, const int kv, const double dt);
+
+	void Product(const int l, const int la, const int lb);
+   void Reinitialize(const int k, const int ktemp, const int ik1,
+                     const int ik2, const int dir = 0);
+
+   char TestValidity(const char* file, const int line,
+                     const int kind=-1) const;
+   
+      // I/O routines
+
+#ifndef NO_GRAPHICS
+   virtual void Plot(PlotWindow3D& port, const int k,
+                     const double level_value = 0, const char shaded = 0x01,
+                     const char showboxes = 0x00) const;
+   virtual void GraphXSlice(PlotWindow3D& port, const int i, const int l, 
+   						const double mult = 1., const char shaded = true) const;
+   virtual void GraphYSlice(PlotWindow3D& port, const int j, const int l, 
+   						const double mult = 1., const char shaded = true) const;
+   virtual void GraphZSlice(PlotWindow3D& port, const int k, const int l, 
+   						const double mult = 1., const char shaded = true) const;
+	virtual void ScaledGraphXSlice(PlotWindow3D& Port, const int i, const int l, 
+							const char shaded = true) const;
+	virtual void ScaledGraphYSlice(PlotWindow3D& Port, const int j, const int l, 
+							const char shaded = true) const;
+	virtual void ScaledGraphZSlice(PlotWindow3D& Port, const int k, const int l, 
+							const char shaded = true) const;
+   virtual void ArrowPlot(PlotWindow3D& port, const int kx, const int ky,
+                          const int kz, const double scale = 1.) const;
+   virtual void ArrowPlot(PlotWindow3D& port, const int kx, const int ky,
+                          const int kz, const int kmult, const int kdiv,
+                          const double scale = 1.) const;
+#endif
+
+#ifdef NETCDF
+	void NetCDF(const char* fname, const int kstart = -1,
+                           const int kend = -1, const char* comment = NULL);
+	void ReadNetCDF(const char* fname, const int kstart = 0);
+#endif
+	
+	void WriteBinary(std::string fname, const int kstart = -1, const int kend = -1,
+			 const char* comment = NULL) const;
+	void WriteBinary(const char* fname, const int kstart = -1, const int kend = -1,
+			 const char* comment = NULL) const;
+
+      // Data Access
+   inline double& data_(const int i, const int j, const int k, const int l) 
+      {int t=Index00(i,j,k,l); return(thedata[t]);}
+   inline double data_(const int i, const int j, const int k,const int l) const
+      {return(thedata[Index00(i,j,k,l)]);}
+   inline int& idata_(const int i, const int j, const int k, const int l) 
+      {return(theidata[Index00(i,j,k,l)]);}
+   inline int idata_(const int i, const int j, const int k, const int l) const
+      {return(theidata[Index00(i,j,k,l)]);}
+#define mdata_(M,I,J,K,L) data_(I,J,K,L)
+#define midata_(M,I,J,K,L) idata_(I,J,K,L)
+   
+// Utility Methods
+   
+   char IsCrossing(const double v, const double y0, const double y1,
+                   double& f);
+
+   void LocToIndex(const double x, const double y, const double z,
+                   int& i, int& j, int& k,
+                   double& ifrac, double& jfrac, double& kfrac,
+                   const char round = 0x00) const;
+   void LocToIndex(const double x, const double y, const double z,
+                   int& i, int& j, int& k,
+                   const char round = 0x00) const;
+
+   inline double Interp(const int i, const int j, const int k, const int l,
+                        const double ifrac, const double jfrac,
+                        const double kfrac) const 
+      {return (1.-ifrac)*(1.-jfrac)*(1.-kfrac)*data_(i,j,k,l)
+             +(1.-ifrac)*jfrac*(1.-kfrac)*data_(i,j+1,k,l)
+             +ifrac*(1.-jfrac)*(1.-kfrac)*data_(i+1,j,k,l)
+             +ifrac*jfrac*(1.-kfrac)*data_(i+1,j+1,k,l)
+             +(1.-ifrac)*(1.-jfrac)*kfrac*data_(i,j,k+1,l)
+             +(1.-ifrac)*jfrac*kfrac*data_(i,j+1,k+1,l)
+             +ifrac*(1.-jfrac)*kfrac*data_(i+1,j,k+1,l)
+             +ifrac*jfrac*kfrac*data_(i+1,j+1,k+1,l);}
+
+   inline double Interp(const double& x, const double& y, const double& z,
+                        const int l) const
+      {
+         int i, j, k;
+         double ifrac, jfrac, kfrac;
+         LocToIndex(x, y, z, i, j, k, ifrac, jfrac, kfrac);
+         return Interp(i, j, k, l, ifrac, jfrac, kfrac);
+      }
+   
+   double Interp2(const double x, const double y, const double z, const int l) const;
+   double Interp2(const int i, const int j, const int k, const int l, const double& ifrac,
+   					const double& jfrac, const double& kfrac) const;
+   Tricubic Interp2(const int i, const int j, const int k, const int l) const;
+   
+	void InterpGrad(const double x, const double y, const double z, 
+							const int l, double& gx, double& gy, double& gz) const;
+   
+   void BuildWorkGrid(int num);
+   void CopyWorkGrid(int to, int from);
+
+      // Extension Methods
+   
+   double ComputeTVal(const int i, const int j, const int k, const int l);
+   double TValFormula(const int sx0, const int sx1, const int sy0, 
+                      const int sy1, const int sz0, const int sz1, 
+                      const double xy0, const double x1, const double x2,
+                      const double y1, const double y2, const double z1, 
+                      const double z2);
+   double ComputeTVal(const int i, const int j, const int k, const int l,
+                      const int ikus);
+   void ExtendDistance(const int phi, const int ikus, const int ikhi, 
+                       const int imask);
+   void ExtendVals(const int i, const int j, const int k, const int l,
+                   const int ikus, const int* p, const int pl);
+   void ExtendFunc(const int i, const int j, const int k, const int l,
+                   const int ikus);
+   void UpdateNeighbor(UniformMesh3D_Heap& heap, const int i, const int j, 
+                       const int k, const int l, const int ikus,
+                       const int ikhi);
+   void InitLevelSet(const int i, const int j, const int k, const int func,
+                     const int phi, const int ikus, const int ikhi);
+   void InitLevelSet(const int i, const int j, const int k, const int func,
+                     const int phi, const int ikus);
+
+      // I/O methods
+   
+   friend std::ostream& operator<<(std::ostream& s, UniformMesh3D& m);
+   friend std::istream& operator>>(std::istream& s, UniformMesh3D& m);
+
+#ifdef USE_AVS
+      // This function is inline because if not, it doesn't get found by
+      // the linker.
+   friend ostream& AVS_Out(ostream& s, const UniformMesh3D* m,
+                           const int l, const char* comment)
+      {
+         int dim[3];
+         dim[0] = m->maxi;
+         dim[1] = m->maxj;
+         dim[2] = m->maxk;
+         char datatype[20] = "double";
+#ifdef AVS_WRITE_UNIFORM
+         char field[20] = "uniform";
+#else
+         char field[20] = "rectilinear";
+#endif
+         float min_ext[3];
+         min_ext[0] = m->zero[0];
+         min_ext[1] = m->zero[1];
+         min_ext[2] = m->zero[2];
+         float max_ext[3];
+         max_ext[0] = m->X(m->maxi-1);
+         max_ext[1] = m->Y(m->maxj-1);
+         max_ext[2] = m->Z(m->maxk-1);
+         AVSWriteHead(s, comment, 3, dim, 3, 1, datatype, field,
+                      min_ext, max_ext, NULL, NULL, NULL, NULL);
+         int i, j, k;
+         for (k=0; k<m->maxk; ++k)
+            for (j=0; j<m->maxj; ++j)
+               for (i=0; i<m->maxi; ++i)
+                  AVSWriteBinary(s, m->data_(i,j,k,l));
+#ifndef AVS_WRITE_UNIFORM
+         for (i=0; i<m->maxi; ++i)
+            AVSWriteBinary(s, float(m->X(i)));
+         for (j=0; j<m->maxj; ++j)
+            AVSWriteBinary(s, float(m->Y(j)));
+         for (k=0; k<m->maxk; ++k)
+            AVSWriteBinary(s, float(m->Z(k)));
+#endif
+         return s;
+      }
+#endif
+
+   friend class UniformMesh3D_Heap;
+   friend class UM3_HeapElement;
+   
+};
+
+// IO Global operators
+
+std::ostream& operator<<(std::ostream& s, UniformMesh3D& m);
+
+std::istream& operator>>(std::istream& s, UniformMesh3D& m);
+
+}
+#endif // __UNIFORMMESH3D_H__
+
+
+
+
+
+

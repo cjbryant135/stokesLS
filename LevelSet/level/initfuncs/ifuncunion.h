@@ -1,0 +1,22 @@
+#ifndef __IFUNCUNION_H__
+#define __IFUNCUNION_H__
+
+#include <math.h>
+#include "initialfunc.h"
+
+namespace levelset {
+        
+    class IFuncUnion : public InitialFunc 
+    {
+        int fnum;
+        InitialFunc** f;
+        
+    public:
+
+        IFuncUnion(InitialFunc** f, const int fnum);
+
+        virtual double XY(const double s, const double t) const;
+    };
+
+}
+#endif

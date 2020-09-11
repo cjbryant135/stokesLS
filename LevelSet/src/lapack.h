@@ -1,0 +1,205 @@
+#ifndef __FORTRAN_H__
+#define __FORTRAN_H__
+
+#include <iostream>
+#include <math.h>
+
+#ifndef RWLAPKDECL
+#define RWLAPKDECL extern "C"
+#endif
+
+const long IEND = 2147483646;
+const float FEND = 1.e+38-1.;
+long   vmax(long,long,long,long);
+long   vmax(long,long,long,long,long);
+long   vmax(long,long,long,long,long,long);
+double vmax(double,double,double,double);
+double vmax(double,double,double,double,double);
+double vmax(double,double,double,double,double,double);
+long   vmin(long,long,long,long);
+long   vmin(long,long,long,long,long);
+long   vmin(long,long,long,long,long,long);
+double vmin(double,double,double,double);
+double vmin(double,double,double,double,double);
+double vmin(double,double,double,double,double,double);
+
+/*
+ * The string support needed (primarily for calls to ilaenv)
+ *
+ * STR1 converts character literal to single character string.
+ */
+struct CHRTMP {
+    unsigned siz; // current size assoc. w/string 's' 
+    char *s;      // ptr to string space 
+};
+inline char *STR1(char *t, char c) { t[0]=c; t[1]='\0'; return t; }
+void ini_chrtmp(CHRTMP*,int);   // initialize the chrtmp array 
+void rel_chrtmp(CHRTMP*,int);   // release the space assoc. w/chrtmp array 
+char *f_concat(CHRTMP*,char*,char*,long);
+
+#ifndef max
+# define max(a,b) ( (a)>(b) ? (a) : (b) )
+#endif
+
+#ifndef min
+# define min(a,b) ( (a)<(b) ? (a) : (b) )
+#endif
+
+#ifndef sign
+# define sign(a,b) ( (b)<0 ? ((a)<0?(a):(-(a))) : ((a)<0?(-(a)):(a)) )
+#endif
+
+/*
+ * Can't use a simple #define for abs() because that approach doesn't
+ * work for complex numbers.
+ */
+
+//inline long abs(long a)         { return a<0 ? -a : a; }
+inline short abs(short a)       { return a<0 ? -a : a; }
+#if !defined(__GNUC__)
+inline float abs(float a)       { return a<0 ? -a : a; }
+#endif
+//#if !defined(__GNUC__) && !defined(__xlC__) && !defined(hpux)  /* These already provide an abs */
+//inline double abs(double a)     { return fabs(a); }
+//#endif
+
+
+/*
+ * pow functions
+ */
+#if 0
+double pow(double,long);
+long   pow(long,long);
+inline double pow(float x, long r)  {return pow(double(x),long(r));}
+#if !defined(hpux)    /* These already provide pow */
+inline double pow(double x, int r)  {return pow(double(x),long(r));}
+#endif
+inline double pow(float x, int r)   {return pow(double(x),long(r));}
+#endif
+
+#ifndef TRUE
+#define TRUE 1
+#endif
+#ifndef FALSE
+#define FALSE 0
+#endif
+
+/*
+ * memerr() is called if an attempt to allocate a large array  off the
+ * heap fails
+ */
+void memerr(char*);
+
+/*
+ * support for DO loops
+ * formula:  DOCNT(ini,tst,inc) = max( (long)((tst-ini+inc)/inc), 0 ) 
+ */
+inline long docnt(double e1,double e2,double e3)
+{ return e3==0. ? 0 : max( (long)((e2-e1+e3)/e3), 0 ); }
+
+RWLAPKDECL long     ilaenv(const long&,char*,char*,const long&,const long&,const long&,const long&);
+RWLAPKDECL int lsame(const char &ca, const char &cb);
+RWLAPKDECL void xerbla(char *srname, const long &info);
+RWLAPKDECL double dlamch(const char &cmach);
+RWLAPKDECL void dgemv(const char &trans, const long &m, const long &n, const double &alpha, 
+                      double *a, const long &lda, double x[], const long &incx, const double &beta, 
+                      double y[], const long &incy);
+RWLAPKDECL void dtrmv(const char &uplo, const char &trans, const char &diag, const long &n, 
+                      double *a, const long &lda, double x[], const long &incx);
+RWLAPKDECL void dcopy(const long &n, double dx[], const long &incx, 
+                      double dy[], const long &incy);
+RWLAPKDECL void dtrmm(const char &side, const char &uplo, const char &transa, const char &diag, 
+                      const long &m, const long &n, const double &alpha, double *a, const long &lda, 
+                      double *b, const long &ldb);
+RWLAPKDECL void dgemm(const char &transa, const char &transb, const long &m, const long &n, 
+                      const long &k, const double &alpha, double *a, const long &lda, double *b, 
+                      const long &ldb, const double &beta, double *c, const long &ldc);
+RWLAPKDECL double dnrm2(const long &n, double dx[], const long &incx);
+RWLAPKDECL void dscal(const long &n, const double &da, double dx[], const long &incx);
+RWLAPKDECL void dger(const long &m, const long &n, const double &alpha, double x[], 
+                     const long &incx, double y[], const long &incy, double *a, const long &lda);
+RWLAPKDECL void drot(const long &n, double dx[], const long &incx, double dy[], 
+                     const long &incy, const double &c, const double &s);
+RWLAPKDECL void dswap(const long &n, double dx[], const long &incx, 
+                      double dy[], const long &incy);
+ 
+RWLAPKDECL void dgesvd(const char&,const char&,const long&,const long&,double*,const long&,double[],double*,const long&,double*,const long&,double[],const long&,long&);
+RWLAPKDECL double dlange(const char &norm, const long &m, const long &n, double *a, 
+                         const long &lda, double work[]);
+RWLAPKDECL void dlassq(const long &n, double x[], const long &incx, 
+                       double &scale, double &sumsq);
+RWLAPKDECL void dlascl(const char &type, const long &kl, const long &ku, const double &cfrom, 
+                       const double &cto, const long &m, const long &n, double *a, const long &lda, 
+                       long &info);
+RWLAPKDECL void dgeqrf(const long &m, const long &n, double *a, const long &lda, 
+                       double tau[], double work[], const long &lwork, long &info);
+RWLAPKDECL void dgeqr2(const long &m, const long &n, double *a, const long &lda, 
+                       double tau[], double work[], long &info);
+RWLAPKDECL void dlarft(const char &direct, const char &storev, const long &n, 
+                       const long &k, double *v, const long &ldv, double tau[], double *t, const long &ldt);
+RWLAPKDECL void dlarfb(const char &side, const char &trans, const char &direct, const char &storev, 
+                       const long &m, const long &n, const long &k, double *v, const long &ldv, 
+                       double *t, const long &ldt, double *c, const long &ldc, double *work, 
+                       const long &ldwork);
+RWLAPKDECL void dlarfg(const long &n, double &alpha, double x[], const long &incx, 
+                       double &tau);
+RWLAPKDECL void dlarf(const char &side, const long &m, const long &n, double v[], 
+                      const long &incv, const double &tau, double *c, const long &ldc, double work[]);
+RWLAPKDECL void dlaset(const char &uplo, const long &m, const long &n, const double &alpha, 
+                       const double &beta, double *a, const long &lda);
+RWLAPKDECL double dlapy2(const double &x, const double &y);
+RWLAPKDECL void dgebrd(const long &m, const long &n, double *a, const long &lda, 
+                       double d[], double e[], double tauq[], double taup[], double work[], 
+                       const long &lwork, long &info);
+RWLAPKDECL void dlabrd(const long &m, const long &n, const long &nb, double *a, 
+                       const long &lda, double d[], double e[], double tauq[], double taup[], 
+                       double *x, const long &ldx, double *y, const long &ldy);
+RWLAPKDECL void dgebd2(const long &m, const long &n, double *a, const long &lda, 
+                       double d[], double e[], double tauq[], double taup[], double work[], 
+                       long &info);
+RWLAPKDECL void dorgbr(const char &vect, const long &m, const long &n, const long &k, 
+                       double *a, const long &lda, double tau[], double work[], const long &lwork, 
+                       long &info);
+RWLAPKDECL void dorgqr(const long &m, const long &n, const long &k, double *a, 
+                       const long &lda, double tau[], double work[], const long &lwork, long &info);
+RWLAPKDECL void dorglq(const long &m, const long &n, const long &k, double *a, 
+                       const long &lda, double tau[], double work[], const long &lwork, long &info);
+RWLAPKDECL void dorg2r(const long &m, const long &n, const long &k, double *a, 
+                       const long &lda, double tau[], double work[], long &info);
+RWLAPKDECL void dorgl2(const long &m, const long &n, const long &k, double *a, 
+                       const long &lda, double tau[], double work[], long &info);
+RWLAPKDECL void dbdsqr(const char &uplo, const long &n, const long &ncvt, 
+                       const long &nru, const long &ncc, double d[], double e[], double *vt, 
+                       const long &ldvt, double *u, const long &ldu, double *c, const long &ldc, 
+                       double work[], long &info);
+RWLAPKDECL void dlartg(const double &f, const double &g, double &cs, double &sn, 
+                       double &r);
+RWLAPKDECL void dlasr(const char &side, const char &pivot, const char &direct, const long &m, 
+                      const long &n, double c[], double s[], double *a, const long &lda);
+RWLAPKDECL void dlasv2(const double &f, const double &g, const double &h, double &ssmin, 
+                       double &ssmax, double &snr, double &csr, double &snl, double &csl);
+RWLAPKDECL void dlas2(const double &f, const double &g, const double &h, double &ssmin, 
+                      double &ssmax);
+RWLAPKDECL void dgelqf(const long &m, const long &n, double *a, const long &lda, 
+                       double tau[], double work[], const long &lwork, long &info);
+RWLAPKDECL void dlacpy(const char &uplo, const long &m, const long &n, double *a, 
+                       const long &lda, double *b, const long &ldb);
+RWLAPKDECL void dormbr(const char &vect, const char &side, const char &trans, const long &m, 
+                       const long &n, const long &k, double *a, const long &lda, double tau[], 
+                       double *c, const long &ldc, double work[], const long &lwork, long &info);
+RWLAPKDECL void dgelq2(const long &m, const long &n, double *a, const long &lda, 
+                       double tau[], double work[], long &info);
+RWLAPKDECL void dormlq(const char &side, const char &trans, const long &m, const long &n, 
+                       const long &k, double *a, const long &lda, double tau[], double *c, const long &ldc, 
+                       double work[], const long &lwork, long &info);
+RWLAPKDECL void dormqr(const char &side, const char &trans, const long &m, const long &n, 
+                       const long &k, double *a, const long &lda, double tau[], double *c, const long &ldc, 
+                       double work[], const long &lwork, long &info);
+RWLAPKDECL void dorm2r(const char &side, const char &trans, const long &m, const long &n, 
+                       const long &k, double *a, const long &lda, double tau[], double *c, const long &ldc, 
+                       double work[], long &info);
+RWLAPKDECL void dorml2(const char &side, const char &trans, const long &m, const long &n, 
+                       const long &k, double *a, const long &lda, double tau[], double *c, const long &ldc, 
+                       double work[], long &info);
+ 
+#endif

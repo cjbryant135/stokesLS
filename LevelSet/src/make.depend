@@ -1,0 +1,1023 @@
+bicubic.o: bicubic.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/bicubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/lapack.h
+bitarray.o: bitarray.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/bitarray.h
+bitmatrix.o: bitmatrix.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/bitmatrix.h
+bitvector.o: bitvector.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/bitvector.h
+blockglobals.o: blockglobals.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/blockqmatrix.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/blockvector.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/spvector.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/spqmatrix.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/eltype.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/spmatrix.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/blockvector.h
+blockqmatrix.o: blockqmatrix.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/blockqmatrix.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/blockvector.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/spvector.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/spqmatrix.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/eltype.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/spmatrix.h
+blockvector.o: blockvector.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/blockvector.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/spvector.h
+boundary2d.o: boundary2d.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/boundary2d.h
+boundary3d.o: boundary3d.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/boundary3d.h
+debug.o: debug.cpp /home/bvm/stash/src/LevelSet/src/..//level/debug.h
+heapelt2d.o: heapelt2d.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/heapelt2d.h
+heapelt3d.o: heapelt3d.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/heapelt3d.h
+initialfunc.o: initialfunc.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h
+initialfunc3d.o: initialfunc3d.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h
+inputparams.o: inputparams.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/units.h
+interface.o: interface.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/reference.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/segment.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/numtrait.h
+interface3d.o: interface3d.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/reference.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/segment.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/numtrait.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tricubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/bicubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/numtrait.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh3d.h
+mesh2d.o: mesh2d.cpp /home/bvm/stash/src/LevelSet/src/..//level/mesh2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/compiler.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/reference.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/segment.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h
+miscio.o: miscio.cpp /home/bvm/stash/src/LevelSet/src/..//level/miscio.h
+multiplotwindow.o: multiplotwindow.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/multiplotwindow.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h
+plotwindow.o: plotwindow.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow.h
+plotwindow2d.o: plotwindow2d.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow.h
+plotwindow3d.o: plotwindow3d.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h
+segment.o: segment.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/segment.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow.h
+spglobals.o: spglobals.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/spmatrix.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/spvector.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/eltype.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/spqmatrix.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/spvector.h
+spmatrix.o: spmatrix.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/spmatrix.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/spvector.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/eltype.h
+spqmatrix.o: spqmatrix.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/spqmatrix.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/spvector.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/eltype.h
+spvector.o: spvector.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/spvector.h
+tinystr.o: tinystr.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinystr.h
+tinyxml.o: tinyxml.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h
+tinyxmlerror.o: tinyxmlerror.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h
+tinyxmlparser.o: tinyxmlparser.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h
+tricubic.o: tricubic.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/tricubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/bicubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h
+um2advect.o: um2advect.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/numtrait.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/reference.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/bicubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/segment.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/numtrait.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/um2heap.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/heapt.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/heapt.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/um2heapelt.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/heapelt2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/debug.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/um2boundary.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/boundary2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h
+um2boundary.o: um2boundary.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/um2boundary.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/boundary2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/bicubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/reference.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/segment.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/numtrait.h
+um2deriv.o: um2deriv.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/bicubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/reference.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/segment.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/numtrait.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/um2boundary.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/boundary2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h
+um2heap.o: um2heap.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/um2heap.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/bicubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/reference.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/segment.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/numtrait.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/heapt.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/heapt.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/um2heapelt.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/heapelt2d.h
+um2init.o: um2init.cpp /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/bicubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/reference.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/segment.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/numtrait.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/um2boundary.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/boundary2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh2d.h
+um2io.o: um2io.cpp /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/bicubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/reference.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/segment.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/numtrait.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/um2boundary.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/boundary2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh2d.h
+um2linear.o: um2linear.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/um2linear.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/um2boundary.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/boundary2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/bicubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/reference.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/segment.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/numtrait.h
+um2periodic.o: um2periodic.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/um2periodic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/um2boundary.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/boundary2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/bicubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/reference.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/segment.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/numtrait.h
+um2xperiodic.o: um2xperiodic.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/um2xperiodic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/um2boundary.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/boundary2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/bicubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/reference.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/segment.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/numtrait.h
+um3advect.o: um3advect.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/numtrait.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/reference.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/segment.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/numtrait.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tricubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/bicubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/um3heap.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/heapt.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/heapt.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/um3heapelt.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/heapelt3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/debug.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/um3boundary.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/boundary3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tricubic.h
+um3boundary.o: um3boundary.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/um3boundary.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/boundary3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/reference.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/segment.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/numtrait.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tricubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/bicubic.h
+um3deriv.o: um3deriv.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/reference.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/segment.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/numtrait.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tricubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/bicubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/um3boundary.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/boundary3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h
+um3heap.o: um3heap.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/um3heap.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/reference.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/segment.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/numtrait.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tricubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/bicubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/heapt.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/heapt.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/um3heapelt.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/heapelt3d.h
+um3init.o: um3init.cpp /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/reference.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/segment.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/numtrait.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tricubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/bicubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/um3boundary.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/boundary3d.h
+um3io.o: um3io.cpp /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/reference.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/segment.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/numtrait.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tricubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/bicubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/boundary3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/um3boundary.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/boundary3d.h
+um3linear.o: um3linear.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/um3linear.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/um3boundary.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/boundary3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/reference.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/segment.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/numtrait.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tricubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/bicubic.h
+um3periodic.o: um3periodic.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/um3periodic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/um3boundary.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/boundary3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/reference.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/segment.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/numtrait.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tricubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/bicubic.h
+um3xyperiodic.o: um3xyperiodic.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/um3xyperiodic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/um3boundary.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/boundary3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/reference.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/segment.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/numtrait.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tricubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/bicubic.h
+uniformmesh2d.o: uniformmesh2d.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/bicubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/reference.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/segment.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/numtrait.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/numtrait.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/debug.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/um2boundary.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/boundary2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h
+uniformmesh3d.o: uniformmesh3d.cpp \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/plotwindow.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/reference.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/datablock.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/datavec.cc \
+ /home/bvm/stash/src/LevelSet/src/..//level/utility.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/segment.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/numtrait.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/uniformmesh3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/tricubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/bicubic.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/numtrait.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/debug.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/um3boundary.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/boundary3d.h \
+ /home/bvm/stash/src/LevelSet/src/..//level/interface3d.h
+units.o: units.cpp /home/bvm/stash/src/LevelSet/src/..//level/units.h
+dbdsqr.o: dbdsqr.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dcopy.o: dcopy.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dgebd2.o: dgebd2.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dgebrd.o: dgebrd.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dgelq2.o: dgelq2.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dgelqf.o: dgelqf.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dgemm.o: dgemm.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dgemv.o: dgemv.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dgeqr2.o: dgeqr2.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dgeqrf.o: dgeqrf.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dger.o: dger.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dgesvd.o: dgesvd.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dlabrd.o: dlabrd.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dlacpy.o: dlacpy.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dlamch.o: dlamch.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dlange.o: dlange.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dlapy2.o: dlapy2.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dlarf.o: dlarf.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dlarfb.o: dlarfb.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dlarfg.o: dlarfg.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dlarft.o: dlarft.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dlartg.o: dlartg.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dlas2.o: dlas2.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dlascl.o: dlascl.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dlaset.o: dlaset.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dlasr.o: dlasr.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dlassq.o: dlassq.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dlasv2.o: dlasv2.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dnrm2.o: dnrm2.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dorg2r.o: dorg2r.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dorgbr.o: dorgbr.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dorgl2.o: dorgl2.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dorglq.o: dorglq.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dorgqr.o: dorgqr.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dorm2r.o: dorm2r.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dormbr.o: dormbr.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dorml2.o: dorml2.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dormlq.o: dormlq.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dormqr.o: dormqr.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+drot.o: drot.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dscal.o: dscal.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dswap.o: dswap.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dtrmm.o: dtrmm.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+dtrmv.o: dtrmv.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+fortran.o: fortran.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+ilaenv.o: ilaenv.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+lsame.o: lsame.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+xerbla.o: xerbla.cpp \
+ /home/bvm/stash/src/LevelSet/src/lapack/../../level/lapack.h
+arc.o: arc.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/arc.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+circle.o: circle.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/circle.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+constant.o: constant.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/constant.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+cup.o: cup.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/cup.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+dbloval.o: dbloval.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/dbloval.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+dblrect.o: dblrect.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/dblrect.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+diamond.o: diamond.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/diamond.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+hardsmile.o: hardsmile.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/hardsmile.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+heavifunc.o: heavifunc.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/heavifunc.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+ifuncunion.o: ifuncunion.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/ifuncunion.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+line.o: line.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/line.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+linearfunc.o: linearfunc.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/linearfunc.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+mballs.o: mballs.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/mballs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc3d.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+mcubes.o: mcubes.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/mcubes.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc3d.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+mcylinders.o: mcylinders.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/mcylinders.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc3d.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+mdisks.o: mdisks.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/mdisks.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+mound.o: mound.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/mound.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc3d.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+msquares.o: msquares.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/msquares.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+negative.o: negative.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/negative.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+negative3d.o: negative3d.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/negative3d.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc3d.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+oval.o: oval.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/oval.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+ovoid.o: ovoid.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/ovoid.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc3d.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+plus.o: plus.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/plus.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+plus2.o: plus2.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/plus2.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+sheet.o: sheet.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/sheet.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc3d.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+sine.o: sine.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/sine.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+snake.o: snake.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/snake.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc3d.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+square.o: square.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/square.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+star.o: star.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/star.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h
+wavyfunc.o: wavyfunc.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/wavyfunc.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+wobble.o: wobble.cpp \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initfuncs/wobble.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/initialfunc3d.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/initfuncs/../..//level/utility.h
+mirrorbc.o: mirrorbc.cpp \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../../level/boundaries/mirrorbc.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/um2boundary.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/boundary2d.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/uniformmesh2d.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/plotwindow.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/plotwindow3d.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/bicubic.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/datavec.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/datablock.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/reference.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/datablock.cc \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/datavec.cc \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/utility.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/interface.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/segment.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/numtrait.h
+quarterbc.o: quarterbc.cpp \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../../level/boundaries/quarterbc.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/um2boundary.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/boundary2d.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/uniformmesh2d.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/plotwindow2d.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/plotwindow.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/plotwindow3d.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/initialfunc.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/defs.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/inputparams.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/tinyxml.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/bicubic.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/datavec.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/datablock.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/reference.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/datablock.cc \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/datavec.cc \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/utility.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/interface.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/segment.h \
+ /home/bvm/stash/src/LevelSet/src/boundaries/../..//level/numtrait.h

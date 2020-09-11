@@ -1,0 +1,146 @@
+#ifndef H_MULTIPLOTWINDOW2D_CLASS
+#define H_MULTIPLOTWINDOW2D_CLASS
+
+#include "plotwindow3d.h"
+
+namespace levelset {
+	
+class MultiPlotWindow : public PlotWindow3D {
+protected:
+   
+   double **mpxmin, **mpxmax, **mpymin, **mpymax; // Physical dimensions of the plot region
+	double **limits[3][2];
+	double **view[3];
+	double **vdv;
+	double **a_[2], **b_[3];
+   int rows, cols;
+   int cur_r, cur_c;
+   
+   void LocalToGlobal(const int r, const int c, const double x, const double y,
+   							double& a, double& b) const;
+	
+public:
+
+   MultiPlotWindow(const int w = 800, const int h = 800) : PlotWindow3D(w,h), mpxmin(NULL), mpxmax(NULL), 
+   								mpymin(NULL), mpymax(NULL) {}
+   MultiPlotWindow(const int r, const int c, bool yes_window, 
+   						bool pae = true, const int w = 800, const int h = 800);
+   virtual ~MultiPlotWindow(void);
+	
+	// 2D plotting commands
+	
+   void SetRange(const int r, const int c, double xmin, double xmax, double ymin, double ymax);
+   void Line(const int r, const int c, double x0, double y0, double x1, double y1);
+   void Arrow(const int r, const int c, double x0, double y0, double x1, double y1);
+   void Text(const int r, const int c, double x0, double y0, const char *str);
+	void Text(const int r, const int c, PlotWindow::WinPos wp, const char* s);
+   void Dot(const int r, const int c, double x0, double y0, int color = 0);
+   void Triangle(const int r, const int c, double x0, double y0, double x1, double y1, double x2,
+                 double y2, unsigned short color);
+   void Polygon(const int r, const int c, int num, double* x, double* y, unsigned short color);
+   void Circle(const int r, const int c, double x0, double y0, double radius);
+   
+   void Clear(const int r, const int c, double xmin, double xmax, double ymin, double ymax);
+   void Clear(const int r, const int c);
+	
+	void SetWindow(const int r, const int c) {cur_r = r; cur_c = c;}
+   virtual void SetRange(double xmin, double xmax, double ymin, double ymax) 
+   					{SetRange(cur_r, cur_c, xmin, xmax, ymin, ymax);}
+   virtual void Line(double x0, double y0, double x1, double y1)
+   					{Line(cur_r, cur_c, x0, y0, x1, y1);}
+   virtual void Arrow(double x0, double y0, double x1, double y1)
+   					{Arrow(cur_r, cur_c, x0, y0, x1, y1);}
+   virtual void Text(double x0, double y0, const char *str)
+   					{Text(cur_r, cur_c, x0, y0, str);}
+   virtual void Dot(double x0, double y0, int color = 0)
+   					{Dot(cur_r, cur_c, x0, y0, color);}
+   virtual void Triangle(double x0, double y0, double x1, double y1, double x2,
+                 double y2, unsigned short color)
+               {Triangle(cur_r, cur_c, x0, y0, x1, y1, x2, y2, color);}
+   virtual void Polygon(int num, double* x, double* y, unsigned short color)
+   				{Polygon(cur_r, cur_c, num, x, y, color);}
+   virtual void Circle(double x0, double y0, double radius)
+   				{Circle(cur_r, cur_c, x0, y0, radius);}
+   
+   virtual void Clear(double xmin, double xmax, double ymin, double ymax)
+   				{Clear(cur_r, cur_c, xmin, xmax, ymin, ymax);}
+   
+   // 3D plotting commands
+   
+   void SetRange(const int r, const int c, double xmin, double xmax, double ymin, double ymax,
+                 double zmin, double zmax);
+   void GetRange(const int r, const int c, double& xmin, double& xmax, 
+   					double& ymin, double& ymax, double& zmin, double& zmax) const;
+	void GetActualRange(const int r, const int c, double& xmin, double& xmax, double& ymin,
+                            double& ymax, double& zmin, double& zmax) const;
+   void SetView(const int r, const int c, double x, double y, double z);
+   void GetView(const int r, const int c, double& x, double& y, double& z) const;
+   void Axes(const int r, const int c);
+   void Line(const int r, const int c, double x0, double y0, double z0, 
+   				double x1, double y1, double z1);
+   void Arrow(const int r, const int c, double x0, double y0, double z0,
+              double x1, double y1, double z1);
+   void Text(const int r, const int c, double x0, double y0, double z0, char *str);
+   void Dot(const int r, const int c, double x0, double y0, double z0, int color = 0);
+   void Triangle(const int r, const int c, double x0, double y0, double z0,
+                 double x1, double y1, double z1,
+                 double x2, double y2, double z2);
+   void Polygon(const int r, const int c, int num, double* x, double* y, double* z,
+                unsigned short color);
+   void Circle(const int r, const int c, double x0, double y0, double z0, double radius);
+
+   virtual void SetRange(double xmin, double xmax, double ymin, double ymax,
+                 double zmin, double zmax)
+        {SetRange(cur_r, cur_c, xmin, xmax, ymin, ymax, zmin, zmax);}
+   virtual void GetRange(double& xmin, double& xmax, 
+   					double& ymin, double& ymax, double& zmin, double& zmax) const
+   		{GetRange(cur_r, cur_c, xmin, xmax, ymin, ymax, zmin, zmax);}
+	virtual void GetActualRange(double& xmin, double& xmax, double& ymin,
+                  double& ymax, double& zmin, double& zmax) const
+   		{GetActualRange(cur_r, cur_c, xmin, xmax, ymin, ymax, zmin, zmax);}
+   virtual void SetView(double x, double y, double z)
+   		{SetView(cur_r, cur_c, x, y, z);}
+   virtual void GetView(double& x, double& y, double& z) const
+   		{GetView(cur_r, cur_c, x, y, z);}
+   virtual void Axes()
+   		{Axes(cur_r, cur_c);}
+   virtual void Line(double x0, double y0, double z0, 
+   				double x1, double y1, double z1)
+   		{Line(cur_r, cur_c, x0, y0, z0, x1, y1, z1);}
+   virtual void Arrow(double x0, double y0, double z0,
+              double x1, double y1, double z1)
+         {Arrow(cur_r, cur_c, x0, y0, z0, x1, y1, z1);}
+   virtual void Text(double x0, double y0, double z0, char *str)
+   		{Text(cur_r, cur_c, x0, y0, z0, str);}
+   virtual void Dot(double x0, double y0, double z0, int color = 0)
+   		{Dot(cur_r, cur_c, x0, y0, z0, color);}
+   virtual void Triangle(double x0, double y0, double z0,
+                 double x1, double y1, double z1,
+                 double x2, double y2, double z2)
+         {Triangle(cur_r, cur_c, x0, y0, z0, x1, y1, z1, x2, y2, z2);}
+   virtual void Polygon(int num, double* x, double* y, double* z,
+                unsigned short color)
+         {Polygon(cur_r, cur_c, num, x, y, z, color);}
+   virtual void Circle(double x0, double y0, double z0, double radius)
+   		{Circle(cur_r, cur_c, x0, y0, z0, radius);}
+
+private:
+
+   void Recalc(const int r, const int c);
+
+   inline double projx(const int r, const int c, double x, double y, double z)
+      {
+         return((a_[0][r][c]*x+a_[1][r][c]*y)
+         			/(vdv[r][c]-x*view[0][r][c]-y*view[1][r][c]-z*view[2][r][c]));
+      }
+   
+   inline double projy(const int r, const int c, double x, double y, double z)
+      {
+         return((b_[0][r][c]*x+b_[1][r][c]*y+b_[2][r][c]*z)
+         			/(vdv[r][c]-x*view[0][r][c]-y*view[1][r][c]-z*view[2][r][c]));
+      }
+   
+};
+
+}
+#endif

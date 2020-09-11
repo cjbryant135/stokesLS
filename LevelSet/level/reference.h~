@@ -1,0 +1,23 @@
+#ifndef __REFERENCE_H__
+#define __REFERENCE_H__
+
+namespace levelset {
+	
+class Reference  {
+	
+	int refs;
+
+  public:
+	
+	Reference(void) : refs(0)  {;}
+	
+	void AddRef(void)  {++refs;}
+	int FreeRef(void)  {return --refs;}
+	
+};
+
+inline void FreeRef(Reference* r)  
+{if (r != NULL) {if (r->FreeRef() == 0) delete r;}}
+
+}
+#endif // __REFERENCE_H__

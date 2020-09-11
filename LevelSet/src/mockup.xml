@@ -1,0 +1,334 @@
+<?xml version="2.0" encoding="UTF-8"?>
+
+<control>
+	<param name="startOfSimulation" unit="day">1</param>
+	<param name="endOfSimulation" unit="day">7</param>
+	<param name="timeStep" unit="hour">0.1</param>
+	<param name="outputPeriod" unit="hour">2</param>
+</control>
+
+
+<computationDomain>
+	<grid nX="65" nY="65"/>
+	<param name="resolution" unit="um">2</param>
+
+	<param name="boundaryLayer" unit="um">50</param>
+	<param name="biofilmDiffusivity">0.8</param>
+	<param name="specificArea" unit="m2.m-3">80</param>
+
+	<param name="maintainVolumeFractionSum" biomass="EPS">true</param>
+
+	<detachment class="Quadratic">
+		<param name="kDet" unit="um-1.hour-1">5e-6</param>
+	</detachment>
+	<param name="sloughDetachedBiomass">true</param>
+
+	<!-- any acarriers inside the domain go here
+		(i.e. carriers not at the boundary -->
+	<carrier name="internalCarrier">
+		<circle>
+			<param name="centerX" unit="um">63</param>
+			<param name="centerY" unit="um">63</param>
+			<param name="radius" unit="um">10</param>
+		</circle>
+	</carrier>
+</computationDomain>
+
+<!--
+	<boundaryCondition location="y0" class="NoFlux"/>
+
+	<boundaryCondition location="yN" class="Constant">
+		<param name="value" unit="g.L-1">0.2e-3</param>
+	</boundaryCondition>
+
+	<boundaryCondition location="yN" class="ConnectedVolume">
+		<param name="volume">TheVolume</param>
+	</boundaryCondition>
+
+	<boundaryCondition location="x0" class="Periodic">
+		<param name="periodicWithBoundary">xN</param>
+	</boundaryCondition>
+
+	<boundaryCondition location="xN" class="Outflow"/>
+
+	<boundaryCondition location="xN" class="Inflow"/>
+	*** need to somehow specify concentration profiles and flow profile
+
+
+	*** model agar using NoFlux for most solutes, but ConnectedVolume for agar solute
+	*** model membrane using NoFlux for most solutes, but ConnectedVolume for membrane solute
+	*** model anode using NoFlux for solutes, but Constant for electric potential
+-->
+
+
+<!-- diffusive quantities -->
+<solute name="Oxygen">
+	<param name="diffusivity" unit="m2.day-1">2e-4</param>
+	<boundaryCondition location="y0" class="NoFlux"/>
+	<boundaryCondition location="yN" class="Constant">
+		<param name="value" unit="g.L-1">4e-3</param>
+	</boundaryCondition>
+	<boundaryCondition location="x0" class="Periodic">
+		<param name="periodicWithBoundary">xN</param>
+	</boundaryCondition>
+	<boundaryCondition location="internalCarrier" class="NoFlux"/>
+</solute>
+<solute name="NH4">
+	<param name="diffusivity" unit="m2.day-1">1.7e-4</param>
+	<boundaryCondition location="y0" class="NoFlux"/>
+	<boundaryCondition location="yN" class="ConnectedVolume">
+		<param name="volume">BulkVolume</param>
+	</boundaryCondition>
+	<boundaryCondition location="x0" class="Periodic">
+		<param name="periodicWithBoundary">xN</param>
+	</boundaryCondition>
+	<boundaryCondition location="internalCarrier" class="NoFlux"/>
+</solute>
+<solute name="NO3">
+	<param name="diffusivity" unit="m2.day-1">1.7e-4</param>
+	<boundaryCondition location="y0" class="NoFlux"/>
+	<boundaryCondition location="yN" class="ConnectedVolume">
+		<param name="volume">BulkVolume</param>
+	</boundaryCondition>
+	<boundaryCondition location="x0" class="Periodic">
+		<param name="periodicWithBoundary">xN</param>
+	</boundaryCondition>
+	<boundaryCondition location="internalCarrier" class="NoFlux"/>
+</solute>
+<solute name="COD">
+	<param name="diffusivity" unit="m2.day-1">1e-4</param>
+	<boundaryCondition location="y0" class="NoFlux"/>
+	<boundaryCondition location="yN" class="ConnectedVolume">
+		<param name="volume">BulkVolume</param>
+	</boundaryCondition>
+	<boundaryCondition location="x0" class="Periodic">
+		<param name="periodicWithBoundary">xN</param>
+	</boundaryCondition>
+	<boundaryCondition location="internalCarrier" class="NoFlux"/>
+</solute>
+
+
+<!-- advective quantities -->
+<biomass name="Autotroph">
+	<param name="density" unit="g.L-1">150</param>
+	<boundaryCondition location="y0" class="NoFlux"/>
+	<boundaryCondition location="yN" class="Outflow"/>
+	<boundaryCondition location="x0" class="Periodic">
+		<param name="periodicWithBoundary">xN</param>
+	</boundaryCondition>
+	<boundaryCondition location="internalCarrier" class="NoFlux"/>
+</biomass>
+<biomass name="Heterotroph">
+	<param name="density" unit="g.L-1">150</param>
+	<boundaryCondition location="y0" class="NoFlux"/>
+	<boundaryCondition location="yN" class="Outflow"/>
+	<boundaryCondition location="x0" class="Periodic">
+		<param name="periodicWithBoundary">xN</param>
+	</boundaryCondition>
+	<boundaryCondition location="internalCarrier" class="NoFlux"/>
+</biomass>
+<biomass name="Inert">
+	<param name="density" unit="g.L-1">150</param>
+	<boundaryCondition location="y0" class="NoFlux"/>
+	<boundaryCondition location="yN" class="Outflow"/>
+	<boundaryCondition location="x0" class="Periodic">
+		<param name="periodicWithBoundary">xN</param>
+	</boundaryCondition>
+	<boundaryCondition location="internalCarrier" class="NoFlux"/>
+</biomass>
+<biomass name="EPS">
+	<param name="density" unit="g.L-1">75</param>
+	<boundaryCondition location="y0" class="NoFlux"/>
+	<boundaryCondition location="yN" class="Outflow"/>
+	<boundaryCondition location="x0" class="Periodic">
+		<param name="periodicWithBoundary">xN</param>
+	</boundaryCondition>
+	<boundaryCondition location="internalCarrier" class="NoFlux"/>
+</biomass>
+
+
+<!-- a potential is diffusive like the solutes, but only exists within the biofilm
+	 and has no-flux boundary at the biofilm surface (i.e. diffusivity in water is 0)
+ -->
+<potential name="ThePotential">
+	<param name="conductivity" unit="mS.cm-1">1e-2</param>
+	<boundaryCondition location="y0" class="Constant">
+		<param name="value" unit="V">-0.5e-3</param>
+	</boundaryCondition>
+	<boundaryCondition location="yN" class="Outflow"/>
+	<boundaryCondition location="x0" class="Periodic">
+		<param name="periodicWithBoundary">xN</param>
+	</boundaryCondition>
+	<boundaryCondition location="internalCarrier" class="Constant">
+		<param name="value" unit="V">-0.5e-3</param>
+	</boundaryCondition>
+</potential>
+
+
+
+<bulk name="BulkVolume">
+	<param name="isConstant">false</param>
+	<param name="dilutionRate" unit="hour-1">0.6</param>
+
+	<solute name="NH4">
+		<param name="initialConcentration" unit="g.L-1">6e-3</param>
+		<param name="influentConcentration" unit="g.L-1">6e-3</param>
+	</solute>
+	<solute name="NO3">
+		<param name="isConstant">true</param>
+		<param name="initialConcentration" unit="g.L-1">0</param>
+		<param name="influentConcentration" unit="g.L-1">0</param>
+	</solute>
+	<solute name="COD">
+		<param name="initialConcentration" unit="g.L-1">10e-3</param>
+		<param name="influentConcentration" unit="g.L-1">10e-3</param>
+		<param name="pulseConcentration" unit="g.L-1">15</param>
+		<param name="pulseRate" unit="hour-1">0.1</param>
+	</solute>
+</bulk>
+
+
+
+<!-- 
+		* Monod kinetic: S/(Ks+S)
+			<kineticFactor class="Monod" solute="NH4">
+				<param name="Ks" unit="g.L-1">1.5e-3</param>
+			</kineticFactor>
+
+		* Simple inhibition kinetic: Ki/(Ki+S)
+			<kineticFactor class="SimpleInhibition" solute="Oxygen">
+				<param name="Ki" unit="g.L-1">1.5e-3</param>
+			</kineticFactor>
+
+		* Haldane kinetic: S/(Ks + S + S^2/Ki)
+			<kineticFactor class="Haldane" solute="NO3">
+				<param name="Ks" unit="g.L-1">0.05e-3</param>
+				<param name="Ki" unit="g.L-1">0.25e-3</param>
+			</kineticFactor>
+
+		* Hill kinetic: S^h/(Ks^h + S^h)
+			<kineticFactor class="Hill" solute="COD">
+				<param name="Ks" unit="g.L-1">0.05e-3</param>
+				<param name="h" unit="-">0.5</param>
+			</kineticFactor>
+
+		* Nernst-Monod kinetic: 1/(1+exp(-(F/RT)*eta))
+			F: Faraday constant: 96485 Coulomb / mol e-
+			R: ideal gas constant: 8.3145 J / (mol*K)
+			T: temperature: 298.15 K
+			F/RT factor: 38.9214
+			<kineticFactor class="NernstMonod" potential="ThePotential">
+				<param name="T" unit="K">298.15</param>
+			</kineticFactor>
+-->
+
+<reaction catalyzedBy="Autotroph" name="GrowthAutotrophs">
+	<param name="muMax" unit="hour-1">0.0417</param>
+	<kineticFactor class="Monod" solute="NH4">
+		<param name="Ks" unit="g.L-1">1.5e-3</param>
+	</kineticFactor>
+	<kineticFactor class="Monod" solute="Oxygen">
+		<param name="Ks" unit="g.L-1">0.5e-3</param>
+	</kineticFactor>
+	<yield>
+		<param name="NH4" unit="g.g-1">-1.587</param>
+		<param name="NO3" unit="g.g-1">1.587</param>
+		<param name="Oxygen" unit="g.g-1">-6.25</param>
+		<param name="Autotroph" unit="g.g-1">0.9</param>
+		<param name="EPS" unit="g.g-1">0.1</param>
+	</yield>
+</reaction>
+
+<reaction catalyzedBy="Autotroph" name="MaintenanceAutotrophs">
+	<param name="muMax" unit="hour-1">0.005</param>
+	<kineticFactor class="Monod" solute="Oxygen">
+		<param name="Ks" unit="g.L-1">0.5e-3</param>
+	</kineticFactor>
+	<yield>
+		<param name="Autotroph" unit="g.g-1">-1</param>
+		<param name="Oxygen" unit="g.g-1">-1</param>
+	</yield>
+</reaction>
+
+<reaction catalyzedBy="Autotroph" name="InactivationAutotrophs">
+	<param name="muMax" unit="hour-1">0.0013</param>
+	<yield>
+		<param name="Autotroph" unit="g.g-1">-1</param>
+		<param name="Inert" unit="g.g-1">1</param>
+	</yield>
+</reaction>
+
+<reaction catalyzedBy="Heterotroph" name="GrowthHeterotrophs">
+	<param name="muMax" unit="hour-1">0.25</param>
+	<kineticFactor class="Monod" solute="COD">
+		<param name="Ks" unit="g.L-1">4e-3</param>
+	</kineticFactor>
+	<kineticFactor class="Monod" solute="Oxygen">
+		<param name="Ks" unit="g.L-1">0.2e-3</param>
+	</kineticFactor>
+	<yield>
+		<param name="COD" unit="g.g-1">-1.5873</param>
+		<param name="Oxygen" unit="g.g-1">-0.5873</param>
+		<param name="Heterotroph" unit="g.g-1">0.8</param>
+		<param name="EPS" unit="g.g-1">0.2</param>
+	</yield>
+</reaction>
+
+<reaction catalyzedBy="Heterotroph" name="MaintenanceHeterotrophs">
+	<param name="muMax" unit="hour-1">0.0133</param>
+	<kineticFactor class="Monod" solute="Oxygen">
+		<param name="Ks" unit="g.L-1">0.2e-3</param>
+	</kineticFactor>
+	<yield>
+		<param name="Heterotroph" unit="g.g-1">-1</param>
+		<param name="Oxygen" unit="g.g-1">-1</param>
+	</yield>
+</reaction>
+
+<reaction catalyzedBy="Heterotroph" name="InactivationHeterotrophs">
+	<param name="muMax" unit="hour-1">0.0033</param>
+	<yield>
+		<param name="Heterotroph" unit="g.g-1">-1</param>
+		<param name="Inert" unit="g.g-1">1</param>
+	</yield>
+</reaction>
+
+<reaction catalyzedBy="EPS" name="HydrolysisEPS">
+	<param name="muMax" unit="hour-1">0.0013</param>
+	<yield>
+		<param name="EPS" unit="g.g-1">-1</param>
+		<param name="COD" unit="g.g-1">1</param>
+	</yield>
+</reaction>
+
+
+
+<inoculation>
+	<composition type="defined">
+		<param name="Autotroph">0.3</param>
+		<param name="Heterotroph">0.7</param>
+	</composition>
+
+	<plane>
+		<param name="pointX" unit="um">0</param>
+		<param name="pointY" unit="um">10</param>
+		<param name="normalX" unit="um">0</param>
+		<param name="normalY" unit="um">1</param>
+	</plane>
+</inoculation>
+
+<inoculation>
+	<composition type="mixed">
+		<param name="seed">123</param>
+		<param name="Autotroph"/>
+		<param name="Heterotroph"/>
+	</composition>
+
+	<circle>
+		<param name="centerX" unit="um">30</param>
+		<param name="centerY" unit="um">0</param>
+		<param name="radius" unit="um">20</param>
+	</circle>
+</inoculation>
+
+

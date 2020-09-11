@@ -1,0 +1,105 @@
+/*************************************************
+    spqmatrix.h
+
+    $Header: spqmatrix.h,v 1.1 99/09/20 11:36:10 chopp Exp $
+
+    $Log:       spqmatrix.h,v $
+    * Revision 1.1  99/09/20  11:36:10  11:36:10  chopp (David Chopp)
+    * Initial revision
+    * 
+    * Revision 1.3  99/04/05  13:32:34  13:32:34  chopp (David Chopp)
+    * *** none ***
+    * 
+    * Revision 1.2  99/03/02  11:53:25  11:53:25  chopp (David Chopp)
+    * *** none ***
+    * 
+    * Revision 1.1  99/02/26  14:26:39  14:26:39  chopp (David Chopp)
+    * Initial revision
+    * 
+    *************************************************/
+
+#ifndef __SPQMATRIX_H__
+#define __SPQMATRIX_H__
+
+#include "spvector.h"
+#include "eltype.h"
+#include <iostream>
+
+namespace blockmatrix {
+        
+    class spQMatrix : spMatrix
+    {
+    public:
+
+        myBool DiagElAlloc;
+        ElType **DiagEl;
+        myBool ZeroInDiag;
+        double *InvDiagEl;
+   
+        spQMatrix(const size_t r);
+        ~spQMatrix(void);
+   
+        virtual void Clear(void);
+   
+        size_t size(void) const {return RowDim;}
+
+        void reshape(const size_t r);
+
+        inline double operator()(const size_t r, const size_t c) const {return Value(r,c);}
+        
+        double& operator()(const size_t r, const size_t c);
+   
+        void Zero(const size_t r, const size_t c);
+   
+        void Allocate(const size_t r, const size_t e);
+        void ExtendRow(const size_t r, const size_t e);
+        void ExtendDim(const size_t r);
+
+        void SortEl(void);
+        void AllocInvDiagEl(void);
+   
+        void SwapRows(const size_t r1, const size_t r2);
+
+        double* ColSums(double* cols = NULL);
+   
+        spQMatrix& operator=(const spQMatrix& A);
+
+        void print(ostream& s = cout) const;
+        void matlab_print(const char* n, ostream& s = cout) const;
+    };
+
+    spVector operator*(const spQMatrix& A, const spVector& X);
+
+    spVector Unknown_Solve(spQMatrix& A, const spVector& b, const int MaxIter = 100,
+                           const double Omega = 1.2, const double Eps = 1.0e-8);
+
+    spVector Jacobi_Solve(spQMatrix& A, const spVector& b, const int MaxIter = 100,
+                          const double Omega = 1.2, const double Eps = 1.0e-8);
+
+    spVector CG_Solve(spQMatrix& A, const spVector& b, const int MaxIter = 100,
+                      const double Omega = 1.2, const double Eps = 1.0e-8);
+
+    spVector SOR_Solve(spQMatrix& A, const spVector& b, const int MaxIter = 100,
+                       const double Omega = 1.2, const double Eps = 1.0e-8);
+
+    spVector Direct_Solve(spQMatrix& A, const spVector& b, const int MaxIter = 100,
+                          const double Omega = 1.2, const double Eps = 1.0e-8);
+
+    inline spVector solve(spQMatrix& A, const spVector& b, const int MaxIter = 100,
+                          const double Omega = 1.2, const double Eps = 1.0e-8)
+    {return CG_Solve(A, b, MaxIter, Omega, Eps);}
+
+    spVector Laplacian(spQMatrix& A, const spVector& b, const int MaxIter = 100,
+                       const double Dt = 0.45, const double Eps = 1.0e-8);
+
+    void dump_mat(spQMatrix& A, const spVector& b, const int fix = 1);
+
+}
+#endif
+
+
+
+
+
+
+

@@ -1,0 +1,51 @@
+#ifndef __BLOCKVECTOR_H__
+#define __BLOCKVECTOR_H__
+
+#include <stdlib.h>
+#include <iostream>
+#include "spvector.h"
+
+namespace blockmatrix {
+
+class BlockVector 
+{
+public:
+
+   size_t Dim;
+   size_t Alldim;
+   spVector** vec;
+
+   BlockVector(const size_t dim = 1);
+   BlockVector(const BlockVector& W);
+   ~BlockVector(void);
+
+	void SubVector(const size_t r, spVector& v);
+   size_t length(void) const {return Alldim;}
+
+   double l1Norm(void) const;
+   double l2Norm(void) const;
+   double linfNorm(void) const;
+
+   double operator()(const size_t i) const;
+   double& operator()(const size_t i);
+
+   void operator=(const BlockVector& W);
+   void operator=(const double a);
+   void operator+=(const BlockVector& W);
+   void operator*=(const double a);
+   void operator*=(const double* d);
+   void operator-=(const BlockVector& W);
+   void operator-=(const double* d);
+   void operator/=(const double a);
+
+   void print(std::ostream& s = std::cout) const;
+   void matlab_print(const char* n, std::ostream& s = std::cout) const;
+   
+};
+
+double operator*(const BlockVector& V, const BlockVector& W);
+	
+}
+
+#endif /* __SPVECTOR_H__ */
+

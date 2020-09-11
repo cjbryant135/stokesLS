@@ -1,0 +1,109 @@
+/*************************************************
+    tricubic.h
+
+    $Header: tricubic.h,v 1.1 2000/06/09 22:07:18 chopp Exp $
+
+    $Log:	tricubic.h,v $
+ * Revision 1.1  2000/06/09  22:07:18  22:07:18  chopp (David Chopp)
+ * Initial revision
+ * 
+*************************************************/
+
+/*************************************************
+    tricubic.h
+
+    $Header: tricubic.h,v 1.1 2000/06/09 22:07:18 chopp Exp $
+
+    $Log:	tricubic.h,v $
+ * Revision 1.1  2000/06/09  22:07:18  22:07:18  chopp (David Chopp)
+ * Initial revision
+ * 
+ * Revision 1.1  2000/06/01  11:59:31  11:59:31  chopp (David Chopp)
+ * Initial revision
+ * 
+*************************************************/
+
+#ifndef __TRICUBIC_H__
+#define __TRICUBIC_H__
+
+#include "bicubic.h"
+
+namespace levelset {
+	
+class Tricubic 
+{
+   long double a[4][4][4];
+   long double wx, wy, wz;
+   
+public:
+
+   Tricubic(const Tricubic& p);
+  
+   Tricubic(const double f[2][2][2], const double fx[2][2][2], 
+            const double fy[2][2][2], const double fz[2][2][2],
+            const double fxy[2][2][2], const double fxz[2][2][2],
+            const double fyz[2][2][2], const double fxyz[2][2][2],
+            const double dx, const double dy, const double dz) :
+         wx(dx), wy(dy), wz(dz)
+         {Build(f,fx,fy,fz,fxy,fxz,fyz,fxyz,dx,dy,dz);}
+   
+   Tricubic(const double f[4][4][4], const double dx, const double dy, 
+   			const double dz) : wx(dx), wy(dy), wz(dz)
+         {BuildwDeriv(f,dx,dy,dz);}
+   
+   Tricubic(void) : wx(0.), wy(0.), wz(0.) {
+      for (int i=0; i<4; ++i)
+         for (int j=0; j<4; ++j) 
+            for (int k=0; k<4; ++k) a[i][j][k] = 0.;
+   }
+   
+   void Build(const double f[2][2][2], const double fx[2][2][2], 
+              const double fy[2][2][2], const double fz[2][2][2],
+              const double fxy[2][2][2], const double fxz[2][2][2],
+              const double fyz[2][2][2], const double fxyz[2][2][2],
+              const double dx, const double dy, const double dz);
+              
+   void BuildwDeriv(const double f[4][4][4], const double dx,
+										const double dy, const double dz);
+										
+   double operator()(const double x, const double y, const double z) const;
+   inline double F(const double x, const double y, const double z) const 
+         {return operator()(x,y,z);}
+   double Dx(const double x, const double y, const double z) const;
+   double Dy(const double x, const double y, const double z) const;
+   double Dz(const double x, const double y, const double z) const;
+   double Dxx(const double x, const double y, const double z) const;
+   double Dxy(const double x, const double y, const double z) const;
+   double Dxz(const double x, const double y, const double z) const;
+   double Dyy(const double x, const double y, const double z) const;
+   double Dyz(const double x, const double y, const double z) const;
+   double Dzz(const double x, const double y, const double z) const;
+   double Dxxx(const double x, const double y, const double z) const;
+   double Dxxy(const double x, const double y, const double z) const;
+   double Dxxz(const double x, const double y, const double z) const;
+   double Dxyy(const double x, const double y, const double z) const;
+   double Dxyz(const double x, const double y, const double z) const;
+   double Dxzz(const double x, const double y, const double z) const;
+   double Dyyy(const double x, const double y, const double z) const;
+   double Dyyz(const double x, const double y, const double z) const;
+   double Dyzz(const double x, const double y, const double z) const;
+   double Dzzz(const double x, const double y, const double z) const;
+	
+   double LocalDist(const double x, const double y, const double z,
+                    double& ax, double& ay, double& az, char& clean, 
+                    const double tol = 1.0e-3) const;
+   
+   Bicubic Slice(const double xyz, const int dir) const;
+   
+   void XCrossing(const double x, const double y, const double z, 
+								double& ay, double& az, char& clean) const;
+   void YCrossing(const double x, const double y, const double z, 
+								double& ax, double& az, char& clean) const;
+   void ZCrossing(const double x, const double y, const double z, 
+								double& ax, double& ay, char& clean) const;
+};
+
+}
+#endif
+
+

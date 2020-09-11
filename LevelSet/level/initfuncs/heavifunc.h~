@@ -1,0 +1,28 @@
+#ifndef __HEAVIFUNC_H__
+#define __HEAVIFUNC_H__
+
+#include <math.h>
+#include "initialfunc.h"
+
+namespace levelset {
+	
+class HeavisideFunc : public InitialFunc 
+{
+   enum {Normx=0, Normy, Beta, Value1, Value2};
+   
+public:
+
+   HeavisideFunc(const double nx = 1., const double ny = 0., const double b = 0.,
+   					const double v1 = 1., const double v2 = 2.);
+   HeavisideFunc(InputParams *params) : InitialFunc() {SetParams(params);} 
+
+   virtual double X(const double t) const;
+   virtual double Y(const double t) const;
+   virtual double XY(const double s, const double t) const;
+
+protected:
+   virtual void SetParams(InputParams *params);
+};
+
+}
+#endif

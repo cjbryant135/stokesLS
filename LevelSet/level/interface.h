@@ -1,0 +1,77 @@
+#ifndef __INTERFACE_H__
+#define __INTERFACE_H__
+
+#include "datavec.h"
+#ifndef NO_GRAPHICS
+#include "plotwindow2d.h"
+#endif
+#include "segment.h"
+#include "initialfunc.h"
+#include <vector>
+
+namespace levelset {
+        
+    class Path {
+    public:
+
+        std::vector<double> x;
+        std::vector<double> y;
+        
+        Path(void) {}
+        
+        bool Closed(void) 
+        {return x.size() > 2 && x.front()==x.back() && y.front()==y.back();}
+        int Size(void) {return x.size();}
+        void Clear(void) {x.clear(); y.clear();}
+    };
+
+
+    class Interface : public DataVec< Segment > {
+    public:
+
+        int* loopstart;
+        int  datalen;
+
+    Interface(int dl) : DataVec< Segment >(), loopstart(NULL), datalen(dl) {;} 
+        ~Interface(void) {if (loopstart != NULL) delete[] loopstart;}
+
+        int LoopCount(void);
+        int LoopLength(const int loop) const;
+        inline Segment& LoopStart(const int loop)
+        {return (*data)[loopstart[loop]];}
+        inline Segment LoopStart(const int loop) const 
+        {return (*data)[loopstart[loop]];}
+        inline int LoopStartIndex(const int loop) const
+        {return loopstart[loop];} 
+   
+        int GetLoopIndices(const int loop, int*& ind) const;
+   
+        void GetEndpoints(const int loop, int& n, double*& x, double*& y) const;
+        void GetEndpoints(const int loop, int& n, DataVec<double>& x, DataVec<double>& y) const;
+        void GetEndpoints(int& n, double*& x, double*& y) const;
+        void GetEndpoints(std::vector<Path>& p) const;
+
+        void InterpToEnds(const int si, const int sl, const int sh);
+   
+        char Closed(const int loop) const;
+
+        // Debugging code
+
+        char Verify(const int sindex) const;
+        char Verify(void) const;
+
+#ifndef NO_GRAPHICS
+        void Plot(PlotWindow2D& port, const int k,
+                  const char showvel = 0x00, const double scale =1) const ;
+        void LabelPlot(PlotWindow2D& port) const ;
+#endif
+#ifdef USE_AVS
+        friend ostream& AVS_Out(ostream& s, Interface* m,
+                                const char* comment = NULL);
+#endif   
+    };
+        
+}
+
+#endif // __INTERFACE_H__
+

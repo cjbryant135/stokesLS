@@ -1,0 +1,344 @@
+/*
+ * Default C++ implementation of dtrmv
+ * For optimum performance, use a machine specific bla library
+ *
+ * $Id: dtrmv.cpp,v 1.3 1993/03/19 16:26:58 alv Exp $
+ *
+ *************************************************************
+ *
+ * Rogue Wave Software, Inc.
+ * P.O. Box 2328
+ * Corvallis, OR 97339
+ *
+ * Copyright (C) 1993.
+ * This software is subject to copyright protection under the
+ * laws of the United States and other countries.
+ *
+ *************************************************************
+ *
+ * Translated from the default Fortran bla using Cobalt
+ * Blue's FOR_C++, and then massaged slightly to Rogue
+ * Wave format.
+ *
+ * Translated by FOR_C++, v1.1 (P), on 02/17/93 at 14:40:06
+ * FOR_C++ Options SET: alloc do=rt no=p pf=dbla,xbla s=dv str=l - prototypes
+ *
+ * $Log: dtrmv.cpp,v $
+ * Revision 1.3  1993/03/19 16:26:58  alv
+ * added RWBLADECL linkage specification
+ *
+ * Revision 1.2  1993/03/05  23:07:35  alv
+ * changed ref parms to const ref
+ *
+ * Revision 1.1  1993/03/03  16:04:47  alv
+ * Initial revision
+ *
+ */
+
+#define RW_CPPBLAS 1
+#if 0
+#include "rw/bla.h"
+#include "rw/bla.h"
+#include "rw/fortran.h" /* Fortran run time library */
+#else
+#include "level/lapack.h"
+#endif
+
+RWLAPKDECL void dtrmv(const char &uplo, const char &trans, const char &diag, const long &n, 
+                      double *a, const long &lda, double x[], const long &incx)
+{
+#define A(I_,J_)  (*(a+(I_)*(lda)+(J_)))
+// PARAMETER translations
+    const double ZERO = 0.0e0;
+// end of PARAMETER translations
+
+    int nounit;
+    long _do0, _do1, _do2, _do3, _do4, _do5, _do6, _do7, _do8, 
+        _do9, i, i_, info, ix, j, j_, jx, kx;
+    double temp;
+
+    //     .. Scalar Arguments ..
+    //     .. Array Arguments ..
+    //     ..
+  
+    //  Purpose
+    //  =======
+  
+    //  DTRMV  performs one of the matrix-vector operations
+  
+    //     x := A*x,   or   x := A'*x,
+  
+    //  where x is an n element vector and  A is an n by n unit, or non-unit,
+    //  upper or lower triangular matrix.
+  
+    //  Parameters
+    //  ==========
+  
+    //  UPLO   - CHARACTER*1.
+    //           On entry, UPLO specifies whether the matrix is an upper or
+    //           lower triangular matrix as follows:
+  
+    //              UPLO = 'U' or 'u'   A is an upper triangular matrix.
+  
+    //              UPLO = 'L' or 'l'   A is a lower triangular matrix.
+  
+    //           Unchanged on exit.
+  
+    //  TRANS  - CHARACTER*1.
+    //           On entry, TRANS specifies the operation to be performed as
+    //           follows:
+  
+    //              TRANS = 'N' or 'n'   x := A*x.
+  
+    //              TRANS = 'T' or 't'   x := A'*x.
+  
+    //              TRANS = 'C' or 'c'   x := A'*x.
+  
+    //           Unchanged on exit.
+  
+    //  DIAG   - CHARACTER*1.
+    //           On entry, DIAG specifies whether or not A is unit
+    //           triangular as follows:
+  
+    //              DIAG = 'U' or 'u'   A is assumed to be unit triangular.
+  
+    //              DIAG = 'N' or 'n'   A is not assumed to be unit
+    //                                  triangular.
+  
+    //           Unchanged on exit.
+  
+    //  N      - INTEGER.
+    //           On entry, N specifies the order of the matrix A.
+    //           N must be at least zero.
+    //           Unchanged on exit.
+  
+    //  A      - DOUBLE PRECISION array of DIMENSION ( LDA, n ).
+    //           Before entry with  UPLO = 'U' or 'u', the leading n by n
+    //           upper triangular part of the array A must contain the upper
+    //           triangular matrix and the strictly lower triangular part of
+    //           A is not referenced.
+    //           Before entry with UPLO = 'L' or 'l', the leading n by n
+    //           lower triangular part of the array A must contain the lower
+    //           triangular matrix and the strictly upper triangular part of
+    //           A is not referenced.
+    //           Note that when  DIAG = 'U' or 'u', the diagonal elements of
+    //           A are not referenced either, but are assumed to be unity.
+    //           Unchanged on exit.
+  
+    //  LDA    - INTEGER.
+    //           On entry, LDA specifies the first dimension of A as declared
+    //           in the calling (sub) program. LDA must be at least
+    //           max( 1, n ).
+    //           Unchanged on exit.
+  
+    //  X      - DOUBLE PRECISION array of dimension at least
+    //           ( 1 + ( n - 1 )*abs( INCX ) ).
+    //           Before entry, the incremented array X must contain the n
+    //           element vector x. On exit, X is overwritten with the
+    //           tranformed vector x.
+  
+    //  INCX   - INTEGER.
+    //           On entry, INCX specifies the increment for the elements of
+    //           X. INCX must not be zero.
+    //           Unchanged on exit.
+  
+  
+    //  Level 2 Blas routine.
+  
+    //  -- Written on 22-October-1986.
+    //     Jack Dongarra, Argonne National Lab.
+    //     Jeremy Du Croz, Nag Central Office.
+    //     Sven Hammarling, Nag Central Office.
+    //     Richard Hanson, Sandia National Labs.
+  
+  
+    //     .. Parameters ..
+    //     .. Local Scalars ..
+    //     .. External Functions ..
+    //     .. External Subroutines ..
+    //     .. Intrinsic Functions ..
+    //     ..
+    //     .. Executable Statements ..
+  
+    //     Test the input parameters.
+  
+    info = 0;
+    if( !lsame( uplo, 'U' ) && !lsame( uplo, 'L' ) ) { 
+        info = 1;
+    }
+    else if( (!lsame( trans, 'N' ) && !lsame( trans, 'T' )) && !lsame( trans, 
+                                                                       'C' ) ) { 
+        info = 2;
+    }
+    else if( !lsame( diag, 'U' ) && !lsame( diag, 'N' ) ) { 
+        info = 3;
+    }
+    else if( n < 0 ) { 
+        info = 4;
+    }
+    else if( lda < max( 1, n ) ) { 
+        info = 6;
+    }
+    else if( incx == 0 ) { 
+        info = 8;
+    }
+    if( info != 0 ) { 
+        xerbla( "DTRMV ", info );
+        return;
+    }
+  
+    //     Quick return if possible.
+  
+    if( n == 0 ) 
+        return;
+  
+    nounit = lsame( diag, 'N' );
+  
+    //     Set up the start point in X if the increment is not unity. This
+    //     will be  ( N - 1 )*INCX  too small for descending loops.
+  
+    if( incx <= 0 ) { 
+        kx = 1 - (n - 1)*incx;
+    }
+    else if( incx != 1 ) { 
+        kx = 1;
+    }
+  
+    //     Start the operations. In this version the elements of A are
+    //     accessed sequentially with one pass through A.
+  
+    if( lsame( trans, 'N' ) ) { 
+    
+        //        Form  x := A*x.
+    
+        if( lsame( uplo, 'U' ) ) { 
+            if( incx == 1 ) { 
+                for( j = 1, j_ = j - 1, _do0 = n; j <= _do0; j++, j_++ ) { 
+                    if( x[j_] != ZERO ) { 
+                        temp = x[j_];
+                        for( i = 1, i_ = i - 1, _do1 = j - 1; i <= _do1; i++, i_++ ) { 
+                            x[i_] = x[i_] + temp*A(j_,i_);
+                        }
+                        if( nounit ) 
+                            x[j_] = x[j_]*A(j_,j_);
+                    }
+                }
+            }
+            else { 
+                jx = kx;
+                for( j = 1, j_ = j - 1, _do2 = n; j <= _do2; j++, j_++ ) { 
+                    if( x[jx - 1] != ZERO ) { 
+                        temp = x[jx - 1];
+                        ix = kx;
+                        for( i = 1, i_ = i - 1, _do3 = j - 1; i <= _do3; i++, i_++ ) { 
+                            x[ix - 1] = x[ix - 1] + temp*A(j_,i_);
+                            ix = ix + incx;
+                        }
+                        if( nounit ) 
+                            x[jx - 1] = x[jx - 1]*A(j_,j_);
+                    }
+                    jx = jx + incx;
+                }
+            }
+        }
+        else { 
+            if( incx == 1 ) { 
+                for( j = n, j_ = j - 1; j >= 1; j--, j_-- ) { 
+                    if( x[j_] != ZERO ) { 
+                        temp = x[j_];
+                        for( i = n, i_ = i - 1, _do4 = j + 1; i >= _do4; i--, i_-- ) { 
+                            x[i_] = x[i_] + temp*A(j_,i_);
+                        }
+                        if( nounit ) 
+                            x[j_] = x[j_]*A(j_,j_);
+                    }
+                }
+            }
+            else { 
+                kx = kx + (n - 1)*incx;
+                jx = kx;
+                for( j = n, j_ = j - 1; j >= 1; j--, j_-- ) { 
+                    if( x[jx - 1] != ZERO ) { 
+                        temp = x[jx - 1];
+                        ix = kx;
+                        for( i = n, i_ = i - 1, _do5 = j + 1; i >= _do5; i--, i_-- ) { 
+                            x[ix - 1] = x[ix - 1] + temp*A(j_,i_);
+                            ix = ix - incx;
+                        }
+                        if( nounit ) 
+                            x[jx - 1] = x[jx - 1]*A(j_,j_);
+                    }
+                    jx = jx - incx;
+                }
+            }
+        }
+    }
+    else { 
+    
+        //        Form  x := A'*x.
+    
+        if( lsame( uplo, 'U' ) ) { 
+            if( incx == 1 ) { 
+                for( j = n, j_ = j - 1; j >= 1; j--, j_-- ) { 
+                    temp = x[j_];
+                    if( nounit ) 
+                        temp = temp*A(j_,j_);
+                    for( i = j - 1, i_ = i - 1; i >= 1; i--, i_-- ) { 
+                        temp = temp + A(j_,i_)*x[i_];
+                    }
+                    x[j_] = temp;
+                }
+            }
+            else { 
+                jx = kx + (n - 1)*incx;
+                for( j = n, j_ = j - 1; j >= 1; j--, j_-- ) { 
+                    temp = x[jx - 1];
+                    ix = jx;
+                    if( nounit ) 
+                        temp = temp*A(j_,j_);
+                    for( i = j - 1, i_ = i - 1; i >= 1; i--, i_-- ) { 
+                        ix = ix - incx;
+                        temp = temp + A(j_,i_)*x[ix - 1];
+                    }
+                    x[jx - 1] = temp;
+                    jx = jx - incx;
+                }
+            }
+        }
+        else { 
+            if( incx == 1 ) { 
+                for( j = 1, j_ = j - 1, _do6 = n; j <= _do6; j++, j_++ ) { 
+                    temp = x[j_];
+                    if( nounit ) 
+                        temp = temp*A(j_,j_);
+                    for( i = j + 1, i_ = i - 1, _do7 = n; i <= _do7; i++, i_++ ) { 
+                        temp = temp + A(j_,i_)*x[i_];
+                    }
+                    x[j_] = temp;
+                }
+            }
+            else { 
+                jx = kx;
+                for( j = 1, j_ = j - 1, _do8 = n; j <= _do8; j++, j_++ ) { 
+                    temp = x[jx - 1];
+                    ix = jx;
+                    if( nounit ) 
+                        temp = temp*A(j_,j_);
+                    for( i = j + 1, i_ = i - 1, _do9 = n; i <= _do9; i++, i_++ ) { 
+                        ix = ix + incx;
+                        temp = temp + A(j_,i_)*x[ix - 1];
+                    }
+                    x[jx - 1] = temp;
+                    jx = jx + incx;
+                }
+            }
+        }
+    }
+  
+    return;
+  
+    //     End of DTRMV .
+  
+#undef  A
+} // end of function 
+

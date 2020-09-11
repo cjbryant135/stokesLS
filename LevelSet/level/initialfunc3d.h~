@@ -1,0 +1,90 @@
+/*************************************************
+    initialfunc3d.h
+
+    $Header: initialfunc3d.h,v 1.1 99/02/04 14:33:19 chopp Exp $
+
+    $Log:	initialfunc3d.h,v $
+ * Revision 1.1  99/02/04  14:33:19  14:33:19  chopp (David Chopp)
+ * Initial revision
+ * 
+*************************************************/
+
+#ifndef __INITIALFUNC3D_H__
+#define __INITIALFUNC3D_H__
+
+#include "defs.h"
+#include "inputparams.h"
+
+namespace levelset {
+	
+typedef double (*DDDfunc)(double,double,double);
+typedef float (*FFFfunc)(float,float,float);
+typedef int (*IIIfunc)(int,int,int);
+typedef double (*DDfunc)(double,double);
+typedef float (*FFfunc)(float,float);
+typedef int (*IIfunc)(int,int);
+typedef double (*Dfunc)(double);
+typedef float (*Ffunc)(float);
+typedef int (*Ifunc)(int);
+
+class InitialFunc3D {
+public:
+
+   InitialFunc3D(const int nparams = 0, const double* params = NULL) 
+         : parameter(NULL), xy_numsteps(1000)
+         {start[0] = 0; start[1] = 0; stop[0] = 1; stop[1] = 1;
+           SetParams(nparams, params);} 
+
+   InitialFunc3D(const double p1) : parameter(NULL), xy_numsteps(1000)
+      {start[0] = 0; start[1] = 0; stop[0] = 1; stop[1] = 1;SetParams(p1);}
+
+   InitialFunc3D(const double p1, const double p2) 
+   		: parameter(NULL), xy_numsteps(1000)
+      {start[0] = 0; start[1] = 0; stop[0] = 1; stop[1] = 1;
+      SetParams(p1, p2);} 
+
+   InitialFunc3D(const double p1, const double p2, const double p3)
+         : parameter(NULL), xy_numsteps(1000)
+      {start[0] = 0; start[1] = 0; stop[0] = 1; stop[1] = 1;
+      SetParams(p1, p2, p3);}
+   
+   InitialFunc3D(const double p1, const double p2, const double p3,
+               const double p4) : parameter(NULL), xy_numsteps(1000)
+      {start[0] = 0; start[1] = 0; stop[0] = 1; stop[1] = 1;
+      SetParams(p1, p2, p3, p4);}
+
+   InitialFunc3D(InputParams *params) : parameter(NULL), xy_numsteps(1000)
+      {start[0] = 0; start[1] = 0; stop[0] = 1; stop[1] = 1;
+      SetParams(params);} 
+   
+   virtual ~InitialFunc3D(void) {if (parameter) delete[] parameter;}
+
+   virtual double X(const double s, const double t) const {return 0;}
+   virtual double Y(const double s, const double t) const {return 0;}
+   virtual double Z(const double s, const double t) const {return 0;}
+   virtual double XYZ(const double s, const double t, const double u) const;
+
+protected:
+   int          param_num;
+   double*      parameter;
+   double       start[2], stop[2];
+   const int    xy_numsteps;
+
+   void SetParams(const int nparams, const double* params);
+   void SetParams(const double p1);
+   void SetParams(const double p1, const double p2);
+   void SetParams(const double p1, const double p2, const double p3);
+   void SetParams(const double p1, const double p2, const double p3,
+                  const double p4);
+   virtual void SetParams(InputParams *params) {} 
+   
+private:
+   char in_triangle(const double u1, const double u2, const double u3, 
+                    const double v1, const double v2, const double v3,
+                    const double x1, const double x2, const double x3) const;
+   
+};
+
+}
+
+#endif //__INITIALFUNC3D_H__

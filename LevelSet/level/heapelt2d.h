@@ -1,0 +1,55 @@
+/*************************************************
+    heapelt2d.h
+
+    $Header: heapelt2d.h,v 1.1 99/02/04 14:32:59 chopp Exp $
+
+    $Log:       heapelt2d.h,v $
+    * Revision 1.1  99/02/04  14:32:59  14:32:59  chopp (David Chopp)
+    * Initial revision
+    * 
+    *************************************************/
+
+#ifndef __HEAPELT2D_H__
+#define __HEAPELT2D_H__
+
+namespace levelset {
+
+    class HeapElement2D {
+    protected:
+   
+        int ind[2];
+        double   value;
+
+    public:
+
+        HeapElement2D(const int i, const int j, const double val); 
+        HeapElement2D(void) {;}
+   
+        inline HeapElement2D& operator=(const HeapElement2D& a)
+            {for (int i=0; i<2; ++i) ind[i] = a.ind[i]; 
+             value = a.value; return *this;}
+
+        inline HeapElement2D& operator=(const double& val)
+            {value = val; return *this;}
+
+        inline int Index(const int i) {return ind[i];}
+        inline double Value(void) const {return value;}
+        inline double& Value(void) {return value;} 
+
+        friend inline int operator<(const HeapElement2D& a, const HeapElement2D& b)
+        { return a.value < b.value;}
+        friend inline int operator>(const HeapElement2D& a, const HeapElement2D& b)
+        { return a.value > b.value;}
+        friend inline int operator<=(const HeapElement2D& a, const HeapElement2D& b)
+        { return a.value <= b.value;}
+        friend inline int operator>=(const HeapElement2D& a, const HeapElement2D& b)
+        { return a.value >= b.value;}
+
+#ifdef LEVEL_DEBUG
+        friend class UniformMesh2D;
+#endif
+    };
+
+}
+
+#endif // __HEAPELT2D_H__

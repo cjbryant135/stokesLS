@@ -1,0 +1,208 @@
+/*
+ * Default C++ implementation of dnrm2
+ * For optimum performance, use a machine specific bla library
+ *
+ * $Id: dnrm2.cpp,v 1.3 1993/03/19 16:26:58 alv Exp $
+ *
+ *************************************************************
+ *
+ * Rogue Wave Software, Inc.
+ * P.O. Box 2328
+ * Corvallis, OR 97339
+ *
+ * Copyright (C) 1993.
+ * This software is subject to copyright protection under the
+ * laws of the United States and other countries.
+ *
+ *************************************************************
+ *
+ * Translated from the default Fortran bla using Cobalt
+ * Blue's FOR_C++, and then massaged slightly to Rogue
+ * Wave format.
+ *
+ * Translated by FOR_C++, v1.1 (P), on 02/17/93 at 14:40:06
+ * FOR_C++ Options SET: alloc do=rt no=p pf=dbla,xbla s=dv str=l - prototypes
+ *
+ * $Log: dnrm2.cpp,v $
+ * Revision 1.3  1993/03/19 16:26:58  alv
+ * added RWBLADECL linkage specification
+ *
+ * Revision 1.2  1993/03/05  23:07:15  alv
+ * changed ref parms to const ref
+ *
+ * Revision 1.1  1993/03/03  16:04:37  alv
+ * Initial revision
+ *
+ */
+
+#define RW_CPPBLAS 1
+#if 0
+#include "rw/bla.h"
+#include "rw/bla.h"
+#include "rw/fortran.h" /* Fortran run time library */
+#else
+#include "level/lapack.h"
+#endif
+
+RWLAPKDECL double dnrm2(const long &n, double dx[], const long &incx)
+{
+  long _do0, i, ix, j_, next;
+  long j=0;
+  double dnrm2_v, hitest, sum, xmax;
+  static double zero = 0.0e0;
+  static double one = 1.0e0;
+  static double cutlo = 8.232e-11;
+  static double cuthi = 1.304e19;
+
+  
+  //     euclidean norm of the n-vector stored in dx() with storage
+  //     increment incx .
+  //     if    n .le. 0 return with result = 0.
+  //     if n .ge. 1 then incx must be .ge. 1
+  
+  //           c.l.lawson, 1978 jan 08
+  //     modified to correct problem with negative increment, 8/21/90.
+  //     modified to correct failure to update ix, 1/25/92.
+  
+  //     four phase method     using two built-in constants that are
+  //     hopefully applicable to all machines.
+  //         cutlo = maximum of  dsqrt(u/eps)  over all known machines.
+  //         cuthi = minimum of  dsqrt(v)      over all known machines.
+  //     where
+  //         eps = smallest no. such that eps + 1. .gt. 1.
+  //         u   = smallest positive no.   (underflow limit)
+  //         v   = largest  no.            (overflow  limit)
+  
+  //     brief outline of algorithm..
+  
+  //     phase 1    scans zero components.
+  //     move to phase 2 when a component is nonzero and .le. cutlo
+  //     move to phase 3 when a component is .gt. cutlo
+  //     move to phase 4 when a component is .ge. cuthi/m
+  //     where m = n for x() real and m = 2*n for DComplex.
+  
+  //     values for cutlo and cuthi..
+  //     from the environmental parameters listed in the imsl converter
+  //     document the limiting values are as follows..
+  //     cutlo, s.p.   u/eps = 2**(-102) for  honeywell.  close seconds are
+  //                   univac and dec at 2**(-103)
+  //                   thus cutlo = 2**(-51) = 4.44089e-16
+  //     cuthi, s.p.   v = 2**127 for univac, honeywell, and dec.
+  //                   thus cuthi = 2**(63.5) = 1.30438e19
+  //     cutlo, d.p.   u/eps = 2**(-67) for honeywell and dec.
+  //                   thus cutlo = 2**(-33.5) = 8.23181d-11
+  //     cuthi, d.p.   same as s.p.  cuthi = 1.30438d19
+  //     data cutlo, cuthi / 8.232d-11,  1.304d19 /
+  //     data cutlo, cuthi / 4.441e-16,  1.304e19 /
+  
+  if( n > 0 ) 
+    goto L_10;
+  dnrm2_v = zero;
+  goto L_300;
+  
+L_10:
+  next = 30;
+  sum = zero;
+  i = 1;
+  if( incx < 0 ) 
+    i = (-n + 1)*incx + 1;
+  ix = 1;
+  //                                                 begin main loop
+L_20:
+  switch( next ) { 
+    case 30: goto L_30;
+    case 50: goto L_50;
+    case 70: goto L_70;
+    case 110: goto L_110;
+  }
+L_30:
+  if( fabs( dx[i - 1] ) > cutlo ) 
+    goto L_85;
+  next = 50;
+  xmax = zero;
+  
+  //                        phase 1.  sum is zero
+  
+L_50:
+  if( dx[i - 1] == zero ) 
+    goto L_200;
+  if( fabs( dx[i - 1] ) > cutlo ) 
+    goto L_85;
+  
+  //                                prepare for phase 2.
+  next = 70;
+  goto L_105;
+  
+  //                                prepare for phase 4.
+  
+L_100:
+  ;
+  ix = j;
+  next = 110;
+  sum = (sum/dx[i - 1])/dx[i - 1];
+L_105:
+  xmax = fabs( dx[i - 1] );
+  goto L_115;
+  
+  //                   phase 2.  sum is small.
+  //                             scale to avoid destructive underflow.
+  
+L_70:
+  if( fabs( dx[i - 1] ) > cutlo ) 
+    goto L_75;
+  
+  //                     common code for phases 2 and 4.
+  //                     in phase 4 sum is large.  scale to avoid overflow.
+  
+L_110:
+  if( fabs( dx[i - 1] ) <= xmax ) 
+    goto L_115;
+  sum = one + sum*pow(xmax/dx[i - 1], 2);
+  xmax = fabs( dx[i - 1] );
+  goto L_200;
+  
+L_115:
+  sum = sum + pow(dx[i - 1]/xmax, 2);
+  goto L_200;
+  
+  
+  //                  prepare for phase 3.
+  
+L_75:
+  sum = (sum*xmax)*xmax;
+  
+  
+  //     for real or d.p. set hitest = cuthi/n
+  //     for DComplex      set hitest = cuthi/(2*n)
+  
+L_85:
+  hitest = cuthi/(float)( n );
+  
+  //                   phase 3.  sum is mid-range.  no scaling.
+  
+  for( j = ix, j_ = j - 1, _do0 = n; j <= _do0; j++, j_++ ) { 
+    if( fabs( dx[i - 1] ) >= hitest ) 
+      goto L_100;
+    sum = sum + pow(dx[i - 1], 2);
+    i = i + incx;
+  }
+  dnrm2_v = sqrt( sum );
+  goto L_300;
+  
+L_200:
+  ;
+  ix = ix + 1;
+  i = i + incx;
+  if( ix <= n ) 
+    goto L_20;
+  
+  //              end of main loop.
+  
+  //              compute square root and adjust for scaling.
+  
+  dnrm2_v = xmax*sqrt( sum );
+L_300:
+  ;
+  return( dnrm2_v );
+} // end of function 
+

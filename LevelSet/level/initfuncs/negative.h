@@ -1,0 +1,21 @@
+#ifndef __NEGATIVE_H__
+#define __NEGATIVE_H__
+
+#include <math.h>
+#include "initialfunc.h"
+
+namespace levelset {
+        
+    class Negative : public InitialFunc 
+    {
+        InitialFunc* f;
+        
+    public:
+
+        Negative(InitialFunc* g);
+
+        virtual double XY(const double s, const double t) const;
+    };
+
+}
+#endif

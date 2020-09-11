@@ -1,0 +1,175 @@
+/*
+ * C++ implementation of lapack routine dlas2
+ *
+ * $Id: dlas2.cpp,v 1.6 1993/04/06 20:41:25 alv Exp $
+ *
+ *************************************************************
+ *
+ * Rogue Wave Software, Inc.
+ * P.O. Box 2328
+ * Corvallis, OR 97339
+ *
+ * Copyright (C) 1993.
+ * This software is subject to copyright protection under the
+ * laws of the United States and other countries.
+ *
+ *************************************************************
+ *
+ * Translated from the Fortran using Cobalt Blue's FOR_C++,
+ * and then massaged slightly to Rogue Wave format.
+ *
+ * Translated by FOR_C++, v1.1 (P), on 02/18/93 at 07:36:08
+ * FOR_C++ Options SET: alloc do=rt no=p pf=dlapack,xlapack,dbla s=dv str=l - prototypes
+ *
+ * $Log: dlas2.cpp,v $
+ * Revision 1.6  1993/04/06 20:41:25  alv
+ * added const to parameters; added include lapkdefs
+ *
+ * Revision 1.5  1993/03/19  17:18:24  alv
+ * added RWLAPKDECL linkage specifier
+ *
+ * Revision 1.4  1993/03/19  16:57:26  alv
+ * sprinkled in some const
+ *
+ * Revision 1.3  1993/03/09  16:14:40  alv
+ * made parms const
+ *
+ * Revision 1.2  1993/03/05  23:15:50  alv
+ * changed ref parms to const ref
+ *
+ * Revision 1.1  1993/03/03  16:07:42  alv
+ * Initial revision
+ *
+ */
+
+#if 0
+#include "rw/lapkdefs.h"
+#include "rw/bla.h"
+#include "rw/lapack.h"
+#include "rw/fortran.h" /* Fortran run time library */
+#else
+#include "level/lapack.h"
+#endif
+
+RWLAPKDECL void /*FUNCTION*/ dlas2(const double &f, const double &g, const double &h, double &ssmin, 
+ double &ssmax)
+{
+// PARAMETER translations
+const double ZERO = 0.0e0;
+const double ONE = 1.0e0;
+const double TWO = 2.0e0;
+// end of PARAMETER translations
+
+  double as, at, au, c, fa, fhmn, fhmx, ga, ha;
+
+  
+  //  -- LAPACK auxiliary routine (version 1.0) --
+  //     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
+  //     Courant Institute, Argonne National Lab, and Rice University
+  //     February 29, 1992
+  
+  //     .. Scalar Arguments ..
+  //     ..
+  
+  //  Purpose
+  //  =======
+  
+  //  DLAS2  computes the singular values of the 2-by-2 matrix
+  //     [  F   G  ]
+  //     [  0   H  ].
+  //  On return, SSMIN is the smaller singular value and SSMAX is the
+  //  larger singular value.
+  
+  //  Arguments
+  //  =========
+  
+  //  F       (input) DOUBLE PRECISION
+  //          The (1,1) entry of the 2-by-2 matrix.
+  
+  //  G       (input) DOUBLE PRECISION
+  //          The (1,2) entry of the 2-by-2 matrix.
+  
+  //  H       (input) DOUBLE PRECISION
+  //          The (2,2) entry of the 2-by-2 matrix.
+  
+  //  SSMIN   (output) DOUBLE PRECISION
+  //          The smaller singular value.
+  
+  //  SSMAX   (output) DOUBLE PRECISION
+  //          The larger singular value.
+  
+  //  Further Details
+  //  ===============
+  
+  //  Barring over/underflow, all output quantities are correct to within
+  //  a few units in the last place (ulps), even in the absence of a guard
+  //  digit in addition/subtraction.
+  
+  //  In IEEE arithmetic, the code works correctly if one matrix entry is
+  //  infinite.
+  
+  //  Overflow will not occur unless the largest singular value itself
+  //  overflows, or is within a few ulps of overflow. (On machines with
+  //  partial overflow, like the Cray, overflow may occur if the largest
+  //  singular value is within a factor of 2 of overflow.)
+  
+  //  Underflow is harmless if underflow is gradual. Otherwise, results
+  //  may correspond to a matrix modified by perturbations of size near
+  //  the underflow threshold.
+  
+  
+  //     .. Parameters ..
+  //     ..
+  //     .. Local Scalars ..
+  //     ..
+  //     .. Intrinsic Functions ..
+  //     ..
+  //     .. Executable Statements ..
+  
+  fa = fabs( f );
+  ga = fabs( g );
+  ha = fabs( h );
+  fhmn = min( fa, ha );
+  fhmx = max( fa, ha );
+  if( fhmn == ZERO ) { 
+    ssmin = ZERO;
+    ssmax = max( fhmx, ga )*sqrt( ONE + pow(min( fhmx, ga )/max( fhmx, 
+     ga ), 2) );
+  }
+  else { 
+    if( ga < fhmx ) { 
+      as = ONE + fhmn/fhmx;
+      at = (fhmx - fhmn)/fhmx;
+      au = pow(ga/fhmx, 2);
+      c = TWO/(sqrt( as*as + au ) + sqrt( at*at + au ));
+      ssmin = fhmn*c;
+      ssmax = fhmx/c;
+    }
+    else { 
+      au = fhmx/ga;
+      if( au == ZERO ) { 
+        
+        //              Avoid possible harmful underflow if exponent range
+        //              asymmetric (true SSMIN may not underflow even if
+        //              AU underflows)
+        
+        ssmin = (fhmn*fhmx)/ga;
+        ssmax = ga;
+      }
+      else { 
+        as = ONE + fhmn/fhmx;
+        at = (fhmx - fhmn)/fhmx;
+        c = ONE/(sqrt( ONE + pow(as*au, 2) ) + sqrt( ONE + 
+         pow(at*au, 2) ));
+        ssmin = (fhmn*c)*au;
+        ssmin = ssmin + ssmin;
+        ssmax = ga/(c + c);
+      }
+    }
+  }
+  return;
+  
+  //     End of DLAS2
+  
+} // end of function 
+

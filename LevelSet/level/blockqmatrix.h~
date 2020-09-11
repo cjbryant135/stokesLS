@@ -1,0 +1,93 @@
+#ifndef __BLOCKQMATRIX_H__
+#define __BLOCKQMATRIX_H__
+
+#include "blockvector.h"
+#include "spqmatrix.h"
+#include "spmatrix.h"
+#include "eltype.h"
+#include <iostream>
+#include <limits.h>
+
+namespace blockmatrix {
+
+typedef union {
+	spQMatrix* spq;
+	spMatrix* sp;
+} spMat;
+
+class BlockQMatrix
+{
+public:
+
+   size_t Dim;
+   size_t Alldim;
+   spMat** mat;
+   double *InvDiagEl;
+   
+   BlockQMatrix(const size_t rc);
+   ~BlockQMatrix(void);
+   
+   void Clear(const size_t r = UINT_MAX, const size_t c = UINT_MAX);
+   
+	void SubMatrix(const size_t rc, spQMatrix& m);
+	void SubMatrix(const size_t r, const size_t c, spMatrix& m);
+	void FindSubMatrix(const size_t r, const size_t c, 
+							size_t& i, size_t& j, size_t& rr, size_t& cc) const;
+
+   size_t size(void) const {return Dim;}
+   size_t rows(void) const {return Dim;}
+   size_t cols(void) const {return Dim;}
+   
+	void SortEl(void);
+   void AllocInvDiagEl(void);
+   
+   double operator()(const size_t r, const size_t c) const;
+	double Value(const size_t r, const size_t c) const;
+	
+   double& operator()(const size_t r, const size_t c);
+   
+   void Zero(const size_t r, const size_t c);
+   
+   double* ColSums(double* cols = NULL);
+   
+   BlockQMatrix& operator=(const BlockQMatrix& A);
+
+   void print(std::ostream& s = std::cout) const;
+   void matlab_print(const char* n,std::ostream& s = std::cout) const;
+};
+
+BlockVector operator*(const BlockQMatrix& A, const BlockVector& X);
+
+BlockVector Unknown_Solve(BlockQMatrix& A, const BlockVector& b, const int MaxIter = 100,
+               const double Omega = 1.2, const double Eps = 1.0e-8);
+
+BlockVector Jacobi_Solve(BlockQMatrix& A, const BlockVector& b, const int MaxIter = 100,
+               const double Omega = 1.2, const double Eps = 1.0e-8);
+
+BlockVector CG_Solve(BlockQMatrix& A, const BlockVector& b, const int MaxIter = 100,
+               const double Omega = 1.2, const double Eps = 1.0e-8);
+
+BlockVector SOR_Solve(BlockQMatrix& A, const BlockVector& b, const int MaxIter = 100,
+               const double Omega = 1.2, const double Eps = 1.0e-8);
+
+BlockVector Direct_Solve(BlockQMatrix& A, const BlockVector& b, const int MaxIter = 100,
+               const double Omega = 1.2, const double Eps = 1.0e-8);
+
+inline BlockVector solve(BlockQMatrix& A, const BlockVector& b, const int MaxIter = 100,
+               const double Omega = 1.2, const double Eps = 1.0e-8)
+{return CG_Solve(A, b, MaxIter, Omega, Eps);}
+
+BlockVector Laplacian(BlockQMatrix& A, const BlockVector& b, const int MaxIter = 100,
+                   const double Dt = 0.45, const double Eps = 1.0e-8);
+
+void dump_mat(BlockQMatrix& A, const BlockVector& b, const int fix = 1);
+
+}
+#endif
+
+
+
+
+
+
+

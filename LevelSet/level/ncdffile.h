@@ -1,0 +1,115 @@
+#ifndef __NCDFFILE_H__
+#define __NCDFFILE_H__
+#include <iostream>
+#include <iomanip>
+#include "defs.h"
+
+namespace levelset {
+        
+    class UniformMesh2D;
+    class UniformMesh3D;
+    class Kss2D;
+    class Kss3D;
+    class Interface;
+
+//#include "uniformmesh2d.h"
+//#include "cake.h"
+
+// NCDF_Out routines are designed to take various data types of my own
+// construction and convert them into NCDF compatible data streams.
+
+    void NCDFWriteComment(ostream& s, char* comment);
+
+    const char UniformField[20] = "uniform";
+    const char RectilinearField[20] = "rectilinear";
+    const char IrregularField[20] = "irregular";
+
+    void NCDFWriteHead(ostream& s, const char* comment, const int ndim,
+                       const int* dim, const int nspace, const int veclen,
+                       const char* data, const char* field, const float* min_ext,
+                       const float* max_ext, const char** label, const char** unit,
+                       const float* min_val, const float* max_val);
+
+    ostream& NCDF_Out(ostream& s, const UniformMesh2D* m, const int k,
+                      const char* comment = NULL);
+
+    ostream& NCDF_Out(ostream& s, const UniformMesh3D* m, const int k,
+                      const char* comment = NULL);
+
+    ostream& NCDF_Out(ostream& s, const Kss2D* m, const int k,
+                      const char* comment = NULL);
+
+    ostream& NCDF_Out(ostream& s, const Kss3D* m, const int k,
+                      const char* comment = NULL);
+
+    ostream& NCDF_Out(ostream& s, const Interface* m,
+                      const char* comment = NULL);
+
+    template <class T>
+        ostream& NCDF_Out(ostream& s, const T* m, const int mi, const int mj);
+
+    template <class T, class U>
+        class OMANIP2 
+    {
+        T i;
+        U j;
+        ostream& (*f)(ostream&,T,U);
+    public:
+    OMANIP2(ostream& (*ff)(ostream&,T,U), T ii, U jj) 
+        : f(ff), i(ii), j(jj) {;}
+
+        friend ostream& operator<<(ostream& os, const OMANIP2& m)
+        {return m.f(os,m.i,m.j);}
+    };
+
+    template <class T>
+        OMANIP2<const T*,const char*> NCDF(const T& a, const char* comment = NULL) 
+    {
+        return OMANIP2<const T*, const char*>(&NCDF_Out, &a, comment);
+    }
+
+    template <class T, class U, class V>
+        class OMANIP3
+    {
+        T i;
+        U j;
+        V k;
+        ostream& (*f)(ostream&,T,U,V);
+    public:
+    OMANIP3(ostream& (*ff)(ostream&,T,U,V), T ii, U jj, V kk) 
+        : f(ff), i(ii), j(jj), k(kk) {;}
+
+        friend ostream& operator<<(ostream& os, const OMANIP3& m)
+        {return m.f(os,m.i,m.j,m.k);}
+    };
+
+    template <class T>
+        OMANIP3<const T*, const int, const int> NCDF(const T* a,
+                                                     const int mi, const int mj) 
+    {
+        return OMANIP3<const T*, const int, const int>(&NCDF_Out, a, mi, mj);
+    }
+
+    template <class T>
+        OMANIP3<const T*, const int, const char*> NCDF(const T& a, const int k,
+                                                       const char* comment = NULL) 
+    {
+        return OMANIP3<const T*, const int, const char*>(&NCDF_Out, &a, k, comment);
+    }
+
+// Create a string filename of the form "label.000000.sfx"
+    char* MakeFileName(const char* label, const int iter, const char* sfx);
+
+// Create a string filename of the form "label.000000.fld"
+    inline char* NCDFFileName(const char* label, const int iter)
+    {return MakeFileName(label, iter, "fld");} 
+
+}
+
+#ifndef NO_INCLUDE_CC_FILE
+#include "ncdffile.cc"
+#endif
+
+#endif // __NCDFFILE_H__
+
+
