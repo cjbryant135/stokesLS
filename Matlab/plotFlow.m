@@ -1,12 +1,8 @@
 clear all; close all;
 
 set(0, 'DefaultTextInterpreter', 'latex')
-%script for plotting the level set data
+%script for plotting the flow data
 
-%copy data (REMOVE THIS BEFORE HANDING OFF)
-system('scp colton@98.213.50.185:/home/colton/Documents/Northwestern/Research/stokesLS/u\*.out ..');
-system('scp colton@98.213.50.185:/home/colton/Documents/Northwestern/Research/stokesLS/v\*.out ..');
-system('scp colton@98.213.50.185:/home/colton/Documents/Northwestern/Research/stokesLS/p\*.out ..');
 
 outDir = '../'; %location of data
 

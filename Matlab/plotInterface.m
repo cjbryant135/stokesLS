@@ -2,8 +2,6 @@ clear all; close all;
 set(0, 'DefaultTextInterpreter', 'latex')
 %script for plotting the level set data
 
-%copy data (REMOVE THIS BEFORE HANDING OFF)
-system('scp colton@98.213.50.185:/home/colton/Documents/Northwestern/Research/stokesLS/phi\*.out ..');
 
 outDir = '../'; %location of data
 
@@ -29,7 +27,7 @@ for k=0:100:1000
     hold on
     contour(xGrid(3:end-2,3:end-2), yGrid(3:end-2,3:end-2), phi(3:end-2,3:end-2), [0,0], '-r', 'LineWidth', 2) %overlay the interface
     set(gca, 'FontSize', 22)
-    %title(['$t = $' num2str(k*0.001)]) %current time
+    title(['$t = $' num2str(k*0.001)]) %current time
     colorbar
     caxis([-1 1])
     
