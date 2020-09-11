@@ -10,7 +10,10 @@ to build all source files and an example problem. The example problem can be exe
 ```bash
 ./shearDrop_exe <Nx> <Ny>
 ``` 
-where *Nx*, *Ny* are the number of grid points to use in the *x* and *y* directions, respectively. 
+where *Nx*, *Ny* are the number of grid points to use in the *x* and *y* directions, respectively. On the first run, the user will be prompted to create a parameter file specifying the initial position/radius of the drop. Answer `y` and input drop position/radius. Note that the default domain size is `[-1,1]x[-1,1]`.
+
+## Details
+See the project wiki for mathematical and code details.
 
 ## Authors/Acknowledgements
 Colton Bryant
