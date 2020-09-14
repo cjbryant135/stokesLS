@@ -1,0 +1,356 @@
+\hypertarget{classstokesGrid}{}\section{stokes\+Grid Class Reference}
+\label{classstokesGrid}\index{stokes\+Grid@{stokes\+Grid}}
+
+
+{\ttfamily \#include $<$stokes\+Grid.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classstokesGrid_a9c6ba1544914f9b796e308982c6850b6}{stokes\+Grid} (const int nx, const int ny, const double x\+Min, const double x\+Max, const double y\+Min, const double y\+Max)
+\item 
+void \hyperlink{classstokesGrid_ae2822f6f932eb55c68b9e1b6ad928d14}{set\+Upp\+Wall\+Velocity} (const double val)
+\item 
+void \hyperlink{classstokesGrid_a50893f188b7614e0833405ba913584bf}{set\+Low\+Wall\+Velocity} (const double val)
+\item 
+void \hyperlink{classstokesGrid_a5aee236f67595380ae097a388c7fd90f}{set\+OmegaU} (const double val)
+\item 
+void \hyperlink{classstokesGrid_af7696163e6000dec6d0a94db68a81aad}{set\+OmegaP} (const double val)
+\item 
+void \hyperlink{classstokesGrid_a659370bf6d4e8842bd2ad65044e08446}{set\+Tol} (const double val)
+\item 
+double \hyperlink{classstokesGrid_a7d0a12c2c2b992e277e5c647e9c043c4}{xC} (const int i) const
+\item 
+double \hyperlink{classstokesGrid_af4abd0b7372a6fad8b14ce8770a8e31a}{yC} (const int j) const
+\item 
+double \hyperlink{classstokesGrid_ad913a3af47df559178ed3cd040c6522e}{xF} (const int i) const
+\item 
+double \hyperlink{classstokesGrid_a101e786b6f6bc39c909ff0bc36d2f62e}{yF} (const int j) const
+\item 
+double \hyperlink{classstokesGrid_ac25f2161d1c4faf8065e77e8600d513c}{u} (const int i, const int j) const
+\item 
+double \hyperlink{classstokesGrid_a7b5a05d7b0ec1771ec3db490a73700f5}{v} (const int i, const int j) const
+\item 
+double \hyperlink{classstokesGrid_a3a88f709045b484f5a058d652890ca93}{p} (const int i, const int j) const
+\item 
+int \hyperlink{classstokesGrid_a6a8dd61e5d32fb30978508b7abeafd48}{uI} (const int i, const int j) const
+\item 
+int \hyperlink{classstokesGrid_a60325ebee955fc114410de83260b681a}{vI} (const int i, const int j) const
+\item 
+int \hyperlink{classstokesGrid_a1219f8545755d880183f5beeba5a0e1a}{pI} (const int i, const int j) const
+\item 
+double \hyperlink{classstokesGrid_aac7540232f0fb8eb07db258ebd5e7774}{fx} (const int i, const int j)
+\item 
+double \hyperlink{classstokesGrid_a9a3c0ef33e9c5a6971c8c50319f22e39}{fy} (const int i, const int j)
+\item 
+void \hyperlink{classstokesGrid_a87a1387d4f623cda7c26aed5454895af}{set\+FX} (const int i, const int j, const double val)
+\item 
+void \hyperlink{classstokesGrid_ad86344e194c01329a8c38e569fc8f7cd}{set\+FY} (const int i, const int j, const double val)
+\item 
+void \hyperlink{classstokesGrid_ae85a3fe6aebbee5d78b574065e018d55}{solve} ()
+\item 
+void \hyperlink{classstokesGrid_a7b5df7cd0927b5f6ab1b5e9297598bab}{make\+Residuals\+Huge} ()
+\item 
+void \hyperlink{classstokesGrid_a2df782e6f854c2d9ad4c02e7b9a05a02}{zero\+Out\+Residuals} ()
+\item 
+bool \hyperlink{classstokesGrid_a08b3fe0546ec608ad9c333be5d4526f1}{is\+Converged} ()
+\item 
+double \hyperlink{classstokesGrid_ab0cbcaafe11c8fc6a7d0f535cc2ab4ce}{uB} (const double x, const double y) const
+\item 
+double \hyperlink{classstokesGrid_a86606c2ec040bf1ab3e1e83202b9c5b0}{vB} (const double x, const double y) const
+\item 
+double \hyperlink{classstokesGrid_a4ee64eaf9843bb919c9485761b2a8d1e}{pB} (const double x, const double y) const
+\item 
+double \hyperlink{classstokesGrid_ac2afbf908d608b2e274ca87be9c81853}{bilin} (const double a11, const double a12, const double a21, const double a22, const double ifrac, const double jfrac) const
+\item 
+void \hyperlink{classstokesGrid_a3ae2f8e65e54c35445d55baa3d61dda3}{dump\+Flow\+Data} (string u\+Out, string v\+Out, string p\+Out)
+\item 
+void \hyperlink{classstokesGrid_aa8b37287725d1688dbdf21dde31d0058}{dump\+FX} (string fx\+Out)
+\item 
+void \hyperlink{classstokesGrid_aeb5e12ba43e9e4ce2433b1cca7ac28e3}{dump\+FY} (string fy\+Out)
+\item 
+void \hyperlink{classstokesGrid_a30a88cab7520df88c110c9f1acd57682}{turn\+On\+Verbose} ()
+\item 
+\hyperlink{classstokesGrid_a8cd3d5ec2336e61ce71253e40d7b3560}{$\sim$stokes\+Grid} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A generic class for solving Stokes equations in 2D with periodic boundary conditions in x and no slip/no penetration conditions in y. Wall velocities and general body force terms can be applied. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classstokesGrid_a9c6ba1544914f9b796e308982c6850b6}\label{classstokesGrid_a9c6ba1544914f9b796e308982c6850b6}} 
+\index{stokes\+Grid@{stokes\+Grid}!stokes\+Grid@{stokes\+Grid}}
+\index{stokes\+Grid@{stokes\+Grid}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{stokes\+Grid()}{stokesGrid()}}
+{\footnotesize\ttfamily stokes\+Grid\+::stokes\+Grid (\begin{DoxyParamCaption}\item[{const int}]{nx,  }\item[{const int}]{ny,  }\item[{const double}]{x\+Min,  }\item[{const double}]{x\+Max,  }\item[{const double}]{y\+Min,  }\item[{const double}]{y\+Max }\end{DoxyParamCaption})}
+
+Constructor for the Stokes grid. Specifies domain/grid size, allocates storage, and specifies default values for parameters. ~\newline
+Inputs\+: nx,ny -\/ discrete grid size ~\newline
+x\+Min, x\+Max, y\+Min, y\+Max -\/ bounds of the domain ~\newline
+\mbox{\Hypertarget{classstokesGrid_a8cd3d5ec2336e61ce71253e40d7b3560}\label{classstokesGrid_a8cd3d5ec2336e61ce71253e40d7b3560}} 
+\index{stokes\+Grid@{stokes\+Grid}!````~stokes\+Grid@{$\sim$stokes\+Grid}}
+\index{````~stokes\+Grid@{$\sim$stokes\+Grid}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{$\sim$stokes\+Grid()}{~stokesGrid()}}
+{\footnotesize\ttfamily stokes\+Grid\+::$\sim$stokes\+Grid (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Deallocates storage. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classstokesGrid_ac2afbf908d608b2e274ca87be9c81853}\label{classstokesGrid_ac2afbf908d608b2e274ca87be9c81853}} 
+\index{stokes\+Grid@{stokes\+Grid}!bilin@{bilin}}
+\index{bilin@{bilin}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{bilin()}{bilin()}}
+{\footnotesize\ttfamily double stokes\+Grid\+::bilin (\begin{DoxyParamCaption}\item[{const double}]{a11,  }\item[{const double}]{a12,  }\item[{const double}]{a21,  }\item[{const double}]{a22,  }\item[{const double}]{ifrac,  }\item[{const double}]{jfrac }\end{DoxyParamCaption}) const}
+
+Generic bilinear interpolation routine. ~\newline
+inputs\+: a11, a12, a21, a22 -\/ data given on four corners of a unit square ~\newline
+ifrac, jfrac -\/ values between 0 and 1 specifying the location to interpolate to. ~\newline
+e.\+g. ifrac = 0.\+5, jfrac = 0.\+75 will interpolate to the point (0.\+5, 0.\+75) ~\newline
+return\+: interpolated value at the given location \mbox{\Hypertarget{classstokesGrid_a3ae2f8e65e54c35445d55baa3d61dda3}\label{classstokesGrid_a3ae2f8e65e54c35445d55baa3d61dda3}} 
+\index{stokes\+Grid@{stokes\+Grid}!dump\+Flow\+Data@{dump\+Flow\+Data}}
+\index{dump\+Flow\+Data@{dump\+Flow\+Data}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{dump\+Flow\+Data()}{dumpFlowData()}}
+{\footnotesize\ttfamily void stokes\+Grid\+::dump\+Flow\+Data (\begin{DoxyParamCaption}\item[{string}]{u\+Out,  }\item[{string}]{v\+Out,  }\item[{string}]{p\+Out }\end{DoxyParamCaption})}
+
+Writes velocity and pressure data to binary files. ~\newline
+Creates 3 output files, one for x-\/velocity, one for y-\/velocity, one for pressure ~\newline
+Each file contains the following data\+: ~\newline
+integer x\+Len\+: the number of grid points in x for this array ~\newline
+integer y\+Len\+: the number of grid points in y for this array ~\newline
+double data\+: an x\+Len$\ast$y\+Len length array of the data ~\newline
+double coords\+: an x\+Len+y\+Len length array containing the x then y coordinates of nodes where this data was stored in the staggered grid. ~\newline
+~\newline
+inputs\+: string u\+Out, v\+Out, p\+Out -\/ filenames for the data to be written to. result\+: data written as described to these files in binary form \mbox{\Hypertarget{classstokesGrid_aa8b37287725d1688dbdf21dde31d0058}\label{classstokesGrid_aa8b37287725d1688dbdf21dde31d0058}} 
+\index{stokes\+Grid@{stokes\+Grid}!dump\+FX@{dump\+FX}}
+\index{dump\+FX@{dump\+FX}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{dump\+F\+X()}{dumpFX()}}
+{\footnotesize\ttfamily void stokes\+Grid\+::dump\+FX (\begin{DoxyParamCaption}\item[{string}]{fx\+Out }\end{DoxyParamCaption})}
+
+Writes the x-\/coordinate of the body force. See dump\+Flow\+Data for format information. \mbox{\Hypertarget{classstokesGrid_aeb5e12ba43e9e4ce2433b1cca7ac28e3}\label{classstokesGrid_aeb5e12ba43e9e4ce2433b1cca7ac28e3}} 
+\index{stokes\+Grid@{stokes\+Grid}!dump\+FY@{dump\+FY}}
+\index{dump\+FY@{dump\+FY}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{dump\+F\+Y()}{dumpFY()}}
+{\footnotesize\ttfamily void stokes\+Grid\+::dump\+FY (\begin{DoxyParamCaption}\item[{string}]{fy\+Out }\end{DoxyParamCaption})}
+
+Writes the y-\/coordinate of the body force. See dump\+Flow\+Data for format information. \mbox{\Hypertarget{classstokesGrid_aac7540232f0fb8eb07db258ebd5e7774}\label{classstokesGrid_aac7540232f0fb8eb07db258ebd5e7774}} 
+\index{stokes\+Grid@{stokes\+Grid}!fx@{fx}}
+\index{fx@{fx}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{fx()}{fx()}}
+{\footnotesize\ttfamily double stokes\+Grid\+::fx (\begin{DoxyParamCaption}\item[{const int}]{i,  }\item[{const int}]{j }\end{DoxyParamCaption})}
+
+Returns the x-\/component of the body force here~\newline
+inputs\+: int i, int j -\/ index of cell ~\newline
+return\+: x body force here \mbox{\Hypertarget{classstokesGrid_a9a3c0ef33e9c5a6971c8c50319f22e39}\label{classstokesGrid_a9a3c0ef33e9c5a6971c8c50319f22e39}} 
+\index{stokes\+Grid@{stokes\+Grid}!fy@{fy}}
+\index{fy@{fy}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{fy()}{fy()}}
+{\footnotesize\ttfamily double stokes\+Grid\+::fy (\begin{DoxyParamCaption}\item[{const int}]{i,  }\item[{const int}]{j }\end{DoxyParamCaption})}
+
+Returns the y-\/component of the body force here~\newline
+inputs\+: int i, int j -\/ index of cell ~\newline
+return\+: y body force here \mbox{\Hypertarget{classstokesGrid_a08b3fe0546ec608ad9c333be5d4526f1}\label{classstokesGrid_a08b3fe0546ec608ad9c333be5d4526f1}} 
+\index{stokes\+Grid@{stokes\+Grid}!is\+Converged@{is\+Converged}}
+\index{is\+Converged@{is\+Converged}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{is\+Converged()}{isConverged()}}
+{\footnotesize\ttfamily bool stokes\+Grid\+::is\+Converged (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Check convergence of the S\+OR solver. \mbox{\Hypertarget{classstokesGrid_a7b5df7cd0927b5f6ab1b5e9297598bab}\label{classstokesGrid_a7b5df7cd0927b5f6ab1b5e9297598bab}} 
+\index{stokes\+Grid@{stokes\+Grid}!make\+Residuals\+Huge@{make\+Residuals\+Huge}}
+\index{make\+Residuals\+Huge@{make\+Residuals\+Huge}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{make\+Residuals\+Huge()}{makeResidualsHuge()}}
+{\footnotesize\ttfamily void stokes\+Grid\+::make\+Residuals\+Huge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Sets residuals to large values to force us into the while loop in solve. \mbox{\Hypertarget{classstokesGrid_a3a88f709045b484f5a058d652890ca93}\label{classstokesGrid_a3a88f709045b484f5a058d652890ca93}} 
+\index{stokes\+Grid@{stokes\+Grid}!p@{p}}
+\index{p@{p}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{p()}{p()}}
+{\footnotesize\ttfamily double stokes\+Grid\+::p (\begin{DoxyParamCaption}\item[{const int}]{i,  }\item[{const int}]{j }\end{DoxyParamCaption}) const}
+
+pressure value. ~\newline
+inputs\+: int i, int j -\/ index of cell ~\newline
+return\+: pressure in the cell \mbox{\Hypertarget{classstokesGrid_a4ee64eaf9843bb919c9485761b2a8d1e}\label{classstokesGrid_a4ee64eaf9843bb919c9485761b2a8d1e}} 
+\index{stokes\+Grid@{stokes\+Grid}!pB@{pB}}
+\index{pB@{pB}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{p\+B()}{pB()}}
+{\footnotesize\ttfamily double stokes\+Grid\+::pB (\begin{DoxyParamCaption}\item[{const double}]{x,  }\item[{const double}]{y }\end{DoxyParamCaption}) const}
+
+Bilinear interpolation for the pressure. ~\newline
+Converts a given point (x,y) to an x-\/velocity cell of the staggered grid. Then uses bilin to interpolate. Note\+: due to lack of pressure data at y=ymin, y=ymax, pressure cannot be interpolated to the upper/lower walls. ~\newline
+inputs\+: double x,y -\/ location in the domain ~\newline
+return\+: interpolated value of p(x,y) ~\newline
+\mbox{\Hypertarget{classstokesGrid_a1219f8545755d880183f5beeba5a0e1a}\label{classstokesGrid_a1219f8545755d880183f5beeba5a0e1a}} 
+\index{stokes\+Grid@{stokes\+Grid}!pI@{pI}}
+\index{pI@{pI}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{p\+I()}{pI()}}
+{\footnotesize\ttfamily int stokes\+Grid\+::pI (\begin{DoxyParamCaption}\item[{const int}]{i,  }\item[{const int}]{j }\end{DoxyParamCaption}) const}
+
+Converts i,j index to index in flow\+Data array for pressure ~\newline
+inputs\+: int i, int j -\/ index of cell ~\newline
+return\+: index of this value in flow\+Data \mbox{\Hypertarget{classstokesGrid_a87a1387d4f623cda7c26aed5454895af}\label{classstokesGrid_a87a1387d4f623cda7c26aed5454895af}} 
+\index{stokes\+Grid@{stokes\+Grid}!set\+FX@{set\+FX}}
+\index{set\+FX@{set\+FX}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{set\+F\+X()}{setFX()}}
+{\footnotesize\ttfamily void stokes\+Grid\+::set\+FX (\begin{DoxyParamCaption}\item[{const int}]{i,  }\item[{const int}]{j,  }\item[{const double}]{val }\end{DoxyParamCaption})}
+
+Sets x body force in cell i,j ~\newline
+inputs\+: int i, int j -\/ index of cell; double val -\/ value to set ~\newline
+result\+: x-\/component of body force at index i,j set to val \mbox{\Hypertarget{classstokesGrid_ad86344e194c01329a8c38e569fc8f7cd}\label{classstokesGrid_ad86344e194c01329a8c38e569fc8f7cd}} 
+\index{stokes\+Grid@{stokes\+Grid}!set\+FY@{set\+FY}}
+\index{set\+FY@{set\+FY}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{set\+F\+Y()}{setFY()}}
+{\footnotesize\ttfamily void stokes\+Grid\+::set\+FY (\begin{DoxyParamCaption}\item[{const int}]{i,  }\item[{const int}]{j,  }\item[{const double}]{val }\end{DoxyParamCaption})}
+
+Sets y body force in cell i,j ~\newline
+inputs\+: int i, int j -\/ index of cell; double val -\/ value to set ~\newline
+result\+: y-\/component of body force at index i,j set to val \mbox{\Hypertarget{classstokesGrid_a50893f188b7614e0833405ba913584bf}\label{classstokesGrid_a50893f188b7614e0833405ba913584bf}} 
+\index{stokes\+Grid@{stokes\+Grid}!set\+Low\+Wall\+Velocity@{set\+Low\+Wall\+Velocity}}
+\index{set\+Low\+Wall\+Velocity@{set\+Low\+Wall\+Velocity}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{set\+Low\+Wall\+Velocity()}{setLowWallVelocity()}}
+{\footnotesize\ttfamily void stokes\+Grid\+::set\+Low\+Wall\+Velocity (\begin{DoxyParamCaption}\item[{const double}]{val }\end{DoxyParamCaption})}
+
+Sets the wall velocity at y=y\+Min. Should be called during problem setup. ~\newline
+ Inputs\+: double val -\/ the velocity you wish to set ~\newline
+Result\+: u\+Low set to val \mbox{\Hypertarget{classstokesGrid_af7696163e6000dec6d0a94db68a81aad}\label{classstokesGrid_af7696163e6000dec6d0a94db68a81aad}} 
+\index{stokes\+Grid@{stokes\+Grid}!set\+OmegaP@{set\+OmegaP}}
+\index{set\+OmegaP@{set\+OmegaP}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{set\+Omega\+P()}{setOmegaP()}}
+{\footnotesize\ttfamily void stokes\+Grid\+::set\+OmegaP (\begin{DoxyParamCaption}\item[{const double}]{val }\end{DoxyParamCaption})}
+
+sets the relaxation parameter used in the pressure update. should be set during problem setup. ~\newline
+inputs\+: double val -\/ the parameter to be used ~\newline
+result\+: omegaP set to val \mbox{\Hypertarget{classstokesGrid_a5aee236f67595380ae097a388c7fd90f}\label{classstokesGrid_a5aee236f67595380ae097a388c7fd90f}} 
+\index{stokes\+Grid@{stokes\+Grid}!set\+OmegaU@{set\+OmegaU}}
+\index{set\+OmegaU@{set\+OmegaU}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{set\+Omega\+U()}{setOmegaU()}}
+{\footnotesize\ttfamily void stokes\+Grid\+::set\+OmegaU (\begin{DoxyParamCaption}\item[{const double}]{val }\end{DoxyParamCaption})}
+
+Sets the relaxation parameter used in solving the momentum equation. Should be set during problem setup. ~\newline
+Inputs\+: double val -\/ the parameter to be used ~\newline
+Result\+: omegaU set to val \mbox{\Hypertarget{classstokesGrid_a659370bf6d4e8842bd2ad65044e08446}\label{classstokesGrid_a659370bf6d4e8842bd2ad65044e08446}} 
+\index{stokes\+Grid@{stokes\+Grid}!set\+Tol@{set\+Tol}}
+\index{set\+Tol@{set\+Tol}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{set\+Tol()}{setTol()}}
+{\footnotesize\ttfamily void stokes\+Grid\+::set\+Tol (\begin{DoxyParamCaption}\item[{const double}]{val }\end{DoxyParamCaption})}
+
+sets the tolerance for the S\+OR solver. should be set during problem setup. ~\newline
+inputs\+: double val -\/ the parameter to be used ~\newline
+result\+: tol set to val \mbox{\Hypertarget{classstokesGrid_ae2822f6f932eb55c68b9e1b6ad928d14}\label{classstokesGrid_ae2822f6f932eb55c68b9e1b6ad928d14}} 
+\index{stokes\+Grid@{stokes\+Grid}!set\+Upp\+Wall\+Velocity@{set\+Upp\+Wall\+Velocity}}
+\index{set\+Upp\+Wall\+Velocity@{set\+Upp\+Wall\+Velocity}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{set\+Upp\+Wall\+Velocity()}{setUppWallVelocity()}}
+{\footnotesize\ttfamily void stokes\+Grid\+::set\+Upp\+Wall\+Velocity (\begin{DoxyParamCaption}\item[{const double}]{val }\end{DoxyParamCaption})}
+
+Sets the wall velocity at y=y\+Max. Should be called during problem setup. ~\newline
+Inputs\+: double val -\/ the velocity you wish to set ~\newline
+Result\+: u\+High set to val \mbox{\Hypertarget{classstokesGrid_ae85a3fe6aebbee5d78b574065e018d55}\label{classstokesGrid_ae85a3fe6aebbee5d78b574065e018d55}} 
+\index{stokes\+Grid@{stokes\+Grid}!solve@{solve}}
+\index{solve@{solve}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{solve()}{solve()}}
+{\footnotesize\ttfamily void stokes\+Grid\+::solve (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Uses a modified S\+OR method to solve the stokes equations. ~\newline
+Further details of the solve can be found in the mathematical documentation. \mbox{\Hypertarget{classstokesGrid_a30a88cab7520df88c110c9f1acd57682}\label{classstokesGrid_a30a88cab7520df88c110c9f1acd57682}} 
+\index{stokes\+Grid@{stokes\+Grid}!turn\+On\+Verbose@{turn\+On\+Verbose}}
+\index{turn\+On\+Verbose@{turn\+On\+Verbose}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{turn\+On\+Verbose()}{turnOnVerbose()}}
+{\footnotesize\ttfamily void stokes\+Grid\+::turn\+On\+Verbose (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Turns on residual information for the Stokes solver ~\newline
+inputs\+: none ~\newline
+result\+: verbose set to true; any call of the \char`\"{}solve\char`\"{} function will write residual information to the terminal throughout the update \mbox{\Hypertarget{classstokesGrid_ac25f2161d1c4faf8065e77e8600d513c}\label{classstokesGrid_ac25f2161d1c4faf8065e77e8600d513c}} 
+\index{stokes\+Grid@{stokes\+Grid}!u@{u}}
+\index{u@{u}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{u()}{u()}}
+{\footnotesize\ttfamily double stokes\+Grid\+::u (\begin{DoxyParamCaption}\item[{const int}]{i,  }\item[{const int}]{j }\end{DoxyParamCaption}) const}
+
+x-\/velocity value. ~\newline
+inputs\+: int i, int j -\/ index of cell ~\newline
+return\+: x-\/component of velocity field \mbox{\Hypertarget{classstokesGrid_ab0cbcaafe11c8fc6a7d0f535cc2ab4ce}\label{classstokesGrid_ab0cbcaafe11c8fc6a7d0f535cc2ab4ce}} 
+\index{stokes\+Grid@{stokes\+Grid}!uB@{uB}}
+\index{uB@{uB}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{u\+B()}{uB()}}
+{\footnotesize\ttfamily double stokes\+Grid\+::uB (\begin{DoxyParamCaption}\item[{const double}]{x,  }\item[{const double}]{y }\end{DoxyParamCaption}) const}
+
+Bilinear interpolation for the x-\/velocity. ~\newline
+Converts a given point (x,y) to an x-\/velocity cell of the staggered grid. Then uses bilin to interpolate. Note\+: this function accounts for the B\+Cs. ~\newline
+inputs\+: double x,y -\/ location in the domain ~\newline
+return\+: interpolated value of u(x,y) ~\newline
+\mbox{\Hypertarget{classstokesGrid_a6a8dd61e5d32fb30978508b7abeafd48}\label{classstokesGrid_a6a8dd61e5d32fb30978508b7abeafd48}} 
+\index{stokes\+Grid@{stokes\+Grid}!uI@{uI}}
+\index{uI@{uI}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{u\+I()}{uI()}}
+{\footnotesize\ttfamily int stokes\+Grid\+::uI (\begin{DoxyParamCaption}\item[{const int}]{i,  }\item[{const int}]{j }\end{DoxyParamCaption}) const}
+
+Converts i,j index to index in flow\+Data array for x-\/velocity ~\newline
+inputs\+: int i, int j -\/ index of cell ~\newline
+return\+: index of this value in flow\+Data \mbox{\Hypertarget{classstokesGrid_a7b5a05d7b0ec1771ec3db490a73700f5}\label{classstokesGrid_a7b5a05d7b0ec1771ec3db490a73700f5}} 
+\index{stokes\+Grid@{stokes\+Grid}!v@{v}}
+\index{v@{v}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{v()}{v()}}
+{\footnotesize\ttfamily double stokes\+Grid\+::v (\begin{DoxyParamCaption}\item[{const int}]{i,  }\item[{const int}]{j }\end{DoxyParamCaption}) const}
+
+y-\/velocity value. ~\newline
+inputs\+: int i, int j -\/ index of cell ~\newline
+return\+: y-\/component of velocity field \mbox{\Hypertarget{classstokesGrid_a86606c2ec040bf1ab3e1e83202b9c5b0}\label{classstokesGrid_a86606c2ec040bf1ab3e1e83202b9c5b0}} 
+\index{stokes\+Grid@{stokes\+Grid}!vB@{vB}}
+\index{vB@{vB}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{v\+B()}{vB()}}
+{\footnotesize\ttfamily double stokes\+Grid\+::vB (\begin{DoxyParamCaption}\item[{const double}]{x,  }\item[{const double}]{y }\end{DoxyParamCaption}) const}
+
+Bilinear interpolation for the y-\/velocity. ~\newline
+Converts a given point (x,y) to an x-\/velocity cell of the staggered grid. Then uses bilin to interpolate. Note\+: this function accounts for the B\+Cs. ~\newline
+inputs\+: double x,y -\/ location in the domain ~\newline
+return\+: interpolated value of v(x,y) ~\newline
+\mbox{\Hypertarget{classstokesGrid_a60325ebee955fc114410de83260b681a}\label{classstokesGrid_a60325ebee955fc114410de83260b681a}} 
+\index{stokes\+Grid@{stokes\+Grid}!vI@{vI}}
+\index{vI@{vI}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{v\+I()}{vI()}}
+{\footnotesize\ttfamily int stokes\+Grid\+::vI (\begin{DoxyParamCaption}\item[{const int}]{i,  }\item[{const int}]{j }\end{DoxyParamCaption}) const}
+
+Converts i,j index to index in flow\+Data array for y-\/velocity ~\newline
+inputs\+: int i, int j -\/ index of cell ~\newline
+return\+: index of this value in flow\+Data \mbox{\Hypertarget{classstokesGrid_a7d0a12c2c2b992e277e5c647e9c043c4}\label{classstokesGrid_a7d0a12c2c2b992e277e5c647e9c043c4}} 
+\index{stokes\+Grid@{stokes\+Grid}!xC@{xC}}
+\index{xC@{xC}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{x\+C()}{xC()}}
+{\footnotesize\ttfamily double stokes\+Grid\+::xC (\begin{DoxyParamCaption}\item[{const int}]{i }\end{DoxyParamCaption}) const}
+
+x coordinate of cell center. ~\newline
+inputs\+: int i -\/ index of cell ~\newline
+return\+: x-\/coordinate of cell center \mbox{\Hypertarget{classstokesGrid_ad913a3af47df559178ed3cd040c6522e}\label{classstokesGrid_ad913a3af47df559178ed3cd040c6522e}} 
+\index{stokes\+Grid@{stokes\+Grid}!xF@{xF}}
+\index{xF@{xF}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{x\+F()}{xF()}}
+{\footnotesize\ttfamily double stokes\+Grid\+::xF (\begin{DoxyParamCaption}\item[{const int}]{i }\end{DoxyParamCaption}) const}
+
+x coordinate of cell face. ~\newline
+inputs\+: int i -\/ index of cell ~\newline
+return\+: x-\/coordinate of cell face \mbox{\Hypertarget{classstokesGrid_af4abd0b7372a6fad8b14ce8770a8e31a}\label{classstokesGrid_af4abd0b7372a6fad8b14ce8770a8e31a}} 
+\index{stokes\+Grid@{stokes\+Grid}!yC@{yC}}
+\index{yC@{yC}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{y\+C()}{yC()}}
+{\footnotesize\ttfamily double stokes\+Grid\+::yC (\begin{DoxyParamCaption}\item[{const int}]{j }\end{DoxyParamCaption}) const}
+
+y coordinate of cell center. ~\newline
+inputs\+: int j -\/ index of cell ~\newline
+return\+: y-\/coordinate of cell center \mbox{\Hypertarget{classstokesGrid_a101e786b6f6bc39c909ff0bc36d2f62e}\label{classstokesGrid_a101e786b6f6bc39c909ff0bc36d2f62e}} 
+\index{stokes\+Grid@{stokes\+Grid}!yF@{yF}}
+\index{yF@{yF}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{y\+F()}{yF()}}
+{\footnotesize\ttfamily double stokes\+Grid\+::yF (\begin{DoxyParamCaption}\item[{const int}]{j }\end{DoxyParamCaption}) const}
+
+y coordinate of cell face. ~\newline
+inputs\+: int j -\/ index of cell ~\newline
+return\+: y-\/coordinate of cell face \mbox{\Hypertarget{classstokesGrid_a2df782e6f854c2d9ad4c02e7b9a05a02}\label{classstokesGrid_a2df782e6f854c2d9ad4c02e7b9a05a02}} 
+\index{stokes\+Grid@{stokes\+Grid}!zero\+Out\+Residuals@{zero\+Out\+Residuals}}
+\index{zero\+Out\+Residuals@{zero\+Out\+Residuals}!stokes\+Grid@{stokes\+Grid}}
+\subsubsection{\texorpdfstring{zero\+Out\+Residuals()}{zeroOutResiduals()}}
+{\footnotesize\ttfamily void stokes\+Grid\+::zero\+Out\+Residuals (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Sets all maximum residuals back to zero. Done before each S\+OR update. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{stokesGrid_8hpp}{stokes\+Grid.\+hpp}\item 
+\hyperlink{stokesGrid_8cpp}{stokes\+Grid.\+cpp}\end{DoxyCompactItemize}

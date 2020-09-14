@@ -25,6 +25,15 @@ using namespace std;
 using namespace levelset;
 
 //main function
+/**
+* Sets up a test problem with an intially circular drop in shear flow. \n
+* Inputs: nx, ny - discrete grid size to be used \n
+* Output: data written to: \n 
+* u_<timestep>.out \n
+* v_<timestep>.out \n
+* p_<timestep>.out \n
+* phi_<timestep>.out
+*/
 int main(int argc, char* argv[]) {
 	
 	//user inputs

@@ -1,0 +1,23 @@
+A two dimesional tool for simulating the dynamics of a fluid/fluid interface in low Reynolds flow.
+
+\subsection*{Quickstart}
+
+After downloading the source files, use 
+\begin{DoxyCode}
+make shearDrop\_exe
+\end{DoxyCode}
+ to build all source files and an example problem. The example problem can be executed by 
+\begin{DoxyCode}
+./shearDrop\_exe <Nx> <Ny>
+\end{DoxyCode}
+ where {\itshape Nx}, {\itshape Ny} are the number of grid points to use in the {\itshape x} and {\itshape y} directions, respectively. On the first run, the user will be prompted to create a parameter file specifying the initial position/radius of the drop. Answer {\ttfamily y} and input drop position/radius. Note that the default domain size is {\ttfamily \mbox{[}-\/1,1\mbox{]}x\mbox{[}-\/1,1\mbox{]}}.
+
+\subsection*{Details}
+
+See Documents/ for mathematical and program details.
+
+\subsection*{Authors/\+Acknowledgements}
+
+Colton Bryant
+
+Level set library provided by David Chopp. 

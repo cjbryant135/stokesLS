@@ -1,0 +1,203 @@
+\hypertarget{classfluidInterface}{}\section{fluid\+Interface Class Reference}
+\label{classfluidInterface}\index{fluid\+Interface@{fluid\+Interface}}
+
+
+{\ttfamily \#include $<$fluid\+Interface.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classfluidInterface_a14208ac17406c5acad330d80f5440854}{fluid\+Interface} (const int nx, const int ny, const double x\+Min, const double x\+Max, const double y\+Min, const double y\+Max, const double sigma)
+\item 
+void \hyperlink{classfluidInterface_a838e21b6c55ca2ee2fe726edda5d3aca}{set\+ST} (const double sigma)
+\item 
+void \hyperlink{classfluidInterface_a05ce87aa6e5aeb08a62067b0122e5956}{set\+Delta\+Width} (const double eps)
+\item 
+double \hyperlink{classfluidInterface_a34689031ca7a3f5be8a90ee90356f2b7}{get\+X\+Min} ()
+\item 
+double \hyperlink{classfluidInterface_ae0f8e75e78e169a766fd51f30ef89d06}{get\+Y\+Min} ()
+\item 
+double \hyperlink{classfluidInterface_aed82e13bb4a6e9f3a2a10b446e14d936}{get\+X\+Max} ()
+\item 
+double \hyperlink{classfluidInterface_a8032c45eaa5da27d5e58481b1712ea8a}{get\+Y\+Max} ()
+\item 
+double \hyperlink{classfluidInterface_ab23850cf11c459d68af382a95273251a}{get\+Delta\+Width} ()
+\item 
+int \hyperlink{classfluidInterface_ad524110f1c5af241e357fac2c7321933}{name\+To\+Indx} (const string slice)
+\item 
+void \hyperlink{classfluidInterface_a0d4ca41c526fb3af9fc2d7da418d4569}{set\+Speed} (const \hyperlink{classstokesGrid}{stokes\+Grid} $\ast$s\+Grid)
+\item 
+void \hyperlink{classfluidInterface_ac4422637e35d3bd4f0a08c3b641470f5}{upwind\+Advance} (const double dt)
+\item 
+void \hyperlink{classfluidInterface_a52469cc0c935ce4744e380481ae20dfa}{dump\+Slice} (const string slice, const string filename)
+\item 
+void \hyperlink{classfluidInterface_acf05896dd2ad5e6c43d4e4c77098b5fa}{initialize} (const Initial\+Func \&f)
+\item 
+void \hyperlink{classfluidInterface_aff4f820adb536fe0f36940f61348c03b}{compute\+Surface\+Tension} ()
+\item 
+void \hyperlink{classfluidInterface_a3e675a8c9b31ceb1dd1e58791edb9988}{compute\+Surface\+Tension} (\hyperlink{classstokesGrid}{stokes\+Grid} $\ast$s\+Grid)
+\item 
+double \hyperlink{classfluidInterface_a83e14fb63e907f03973abb5124c87dfa}{dist\+To\+Int} (levelset\+::\+Bicubic $\ast$fit, const double xi, const double yj, const double x\+Min, const double x\+Max, const double y\+Min, const double y\+Max, double \&xC, double \&yC, bool \&clean)
+\item 
+{\footnotesize template$<$typename T $>$ }\\int \hyperlink{classfluidInterface_ac1923b87f580cee256b6f12136970acc}{sgn} (T val)
+\item 
+\hyperlink{classfluidInterface_aae189149ce71b7a7484c4cf8a286e4b3}{$\sim$fluid\+Interface} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A class to interact with Prof. Chopp\textquotesingle{}s level set library. Used to compute surface tension forces, compute the velocity extension, and update the interface location. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classfluidInterface_a14208ac17406c5acad330d80f5440854}\label{classfluidInterface_a14208ac17406c5acad330d80f5440854}} 
+\index{fluid\+Interface@{fluid\+Interface}!fluid\+Interface@{fluid\+Interface}}
+\index{fluid\+Interface@{fluid\+Interface}!fluid\+Interface@{fluid\+Interface}}
+\subsubsection{\texorpdfstring{fluid\+Interface()}{fluidInterface()}}
+{\footnotesize\ttfamily fluid\+Interface\+::fluid\+Interface (\begin{DoxyParamCaption}\item[{const int}]{nx,  }\item[{const int}]{ny,  }\item[{const double}]{x\+Min,  }\item[{const double}]{x\+Max,  }\item[{const double}]{y\+Min,  }\item[{const double}]{y\+Max,  }\item[{const double}]{sigma }\end{DoxyParamCaption})}
+
+Creates the level set grid for our model of the fluid/fluid interface. A map is used to name each \char`\"{}slice\char`\"{} of the level set data. ~\newline
+Inputs\+: nx, ny -\/ discrete grid size ~\newline
+x\+Min, x\+Max, y\+Min, y\+Max -\/ domain bounds ~\newline
+sigma -\/ surface tension ~\newline
+\mbox{\Hypertarget{classfluidInterface_aae189149ce71b7a7484c4cf8a286e4b3}\label{classfluidInterface_aae189149ce71b7a7484c4cf8a286e4b3}} 
+\index{fluid\+Interface@{fluid\+Interface}!````~fluid\+Interface@{$\sim$fluid\+Interface}}
+\index{````~fluid\+Interface@{$\sim$fluid\+Interface}!fluid\+Interface@{fluid\+Interface}}
+\subsubsection{\texorpdfstring{$\sim$fluid\+Interface()}{~fluidInterface()}}
+{\footnotesize\ttfamily fluid\+Interface\+::$\sim$fluid\+Interface (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Deallocates the level set data 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classfluidInterface_aff4f820adb536fe0f36940f61348c03b}\label{classfluidInterface_aff4f820adb536fe0f36940f61348c03b}} 
+\index{fluid\+Interface@{fluid\+Interface}!compute\+Surface\+Tension@{compute\+Surface\+Tension}}
+\index{compute\+Surface\+Tension@{compute\+Surface\+Tension}!fluid\+Interface@{fluid\+Interface}}
+\subsubsection{\texorpdfstring{compute\+Surface\+Tension()}{computeSurfaceTension()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void fluid\+Interface\+::compute\+Surface\+Tension (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Computes the surface tension body force using a discrete delta function of width 2$\ast$eps. Note\+: This is computed on the nodes of the level set grid and should later be interpolated to the staggered grid for use with the Stokes solver. \mbox{\Hypertarget{classfluidInterface_a3e675a8c9b31ceb1dd1e58791edb9988}\label{classfluidInterface_a3e675a8c9b31ceb1dd1e58791edb9988}} 
+\index{fluid\+Interface@{fluid\+Interface}!compute\+Surface\+Tension@{compute\+Surface\+Tension}}
+\index{compute\+Surface\+Tension@{compute\+Surface\+Tension}!fluid\+Interface@{fluid\+Interface}}
+\subsubsection{\texorpdfstring{compute\+Surface\+Tension()}{computeSurfaceTension()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void fluid\+Interface\+::compute\+Surface\+Tension (\begin{DoxyParamCaption}\item[{\hyperlink{classstokesGrid}{stokes\+Grid} $\ast$}]{s\+Grid }\end{DoxyParamCaption})}
+
+Computes surface tension and interpolates it onto the staggered grid for use by the stokes solver ~\newline
+Inputs\+: s\+Grid -\/ a \hyperlink{classstokesGrid}{stokes\+Grid} object ~\newline
+\mbox{\Hypertarget{classfluidInterface_a83e14fb63e907f03973abb5124c87dfa}\label{classfluidInterface_a83e14fb63e907f03973abb5124c87dfa}} 
+\index{fluid\+Interface@{fluid\+Interface}!dist\+To\+Int@{dist\+To\+Int}}
+\index{dist\+To\+Int@{dist\+To\+Int}!fluid\+Interface@{fluid\+Interface}}
+\subsubsection{\texorpdfstring{dist\+To\+Int()}{distToInt()}}
+{\footnotesize\ttfamily double fluid\+Interface\+::dist\+To\+Int (\begin{DoxyParamCaption}\item[{levelset\+::\+Bicubic $\ast$}]{fit,  }\item[{const double}]{xi,  }\item[{const double}]{yj,  }\item[{const double}]{x\+Min,  }\item[{const double}]{x\+Max,  }\item[{const double}]{y\+Min,  }\item[{const double}]{y\+Max,  }\item[{double \&}]{xC,  }\item[{double \&}]{yC,  }\item[{bool \&}]{clean }\end{DoxyParamCaption})}
+
+Uses Newtons method to find the closest point on the interface to a given grid point and the distance to it ~\newline
+Inputs\+: Bicubic$\ast$ fit -\/ pointer to a bicubic fit of the level set data near the interface ~\newline
+ xi, yj -\/ Location of the grid point we are computing the distance to ~\newline
+ x\+Min, x\+Max, y\+Min, y\+Max -\/ Corners of the grid cell of interest ~\newline
+ xC, yC -\/ Location of the root found by the Newton\textquotesingle{}s method (passed by reference for use later) ~\newline
+ clean -\/ set to true if the newton\textquotesingle{}s method converges in max\+Its iterations A\+ND the root found is inside the current grid cell ~\newline
+Return\+: distance to the interface \mbox{\Hypertarget{classfluidInterface_a52469cc0c935ce4744e380481ae20dfa}\label{classfluidInterface_a52469cc0c935ce4744e380481ae20dfa}} 
+\index{fluid\+Interface@{fluid\+Interface}!dump\+Slice@{dump\+Slice}}
+\index{dump\+Slice@{dump\+Slice}!fluid\+Interface@{fluid\+Interface}}
+\subsubsection{\texorpdfstring{dump\+Slice()}{dumpSlice()}}
+{\footnotesize\ttfamily void fluid\+Interface\+::dump\+Slice (\begin{DoxyParamCaption}\item[{const string}]{slice,  }\item[{const string}]{filename }\end{DoxyParamCaption})}
+
+Writes a named slice of the level set data to file. ~\newline
+input\+: string slice -\/ name of a slice of the level set data, string filename -\/ filename where data is to be written ~\newline
+result\+: level set data for the given slice is written to file. See Level\+Set/src/um2io.\+cpp for details of the output file. \mbox{\Hypertarget{classfluidInterface_ab23850cf11c459d68af382a95273251a}\label{classfluidInterface_ab23850cf11c459d68af382a95273251a}} 
+\index{fluid\+Interface@{fluid\+Interface}!get\+Delta\+Width@{get\+Delta\+Width}}
+\index{get\+Delta\+Width@{get\+Delta\+Width}!fluid\+Interface@{fluid\+Interface}}
+\subsubsection{\texorpdfstring{get\+Delta\+Width()}{getDeltaWidth()}}
+{\footnotesize\ttfamily double fluid\+Interface\+::get\+Delta\+Width (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classfluidInterface_aed82e13bb4a6e9f3a2a10b446e14d936}\label{classfluidInterface_aed82e13bb4a6e9f3a2a10b446e14d936}} 
+\index{fluid\+Interface@{fluid\+Interface}!get\+X\+Max@{get\+X\+Max}}
+\index{get\+X\+Max@{get\+X\+Max}!fluid\+Interface@{fluid\+Interface}}
+\subsubsection{\texorpdfstring{get\+X\+Max()}{getXMax()}}
+{\footnotesize\ttfamily double fluid\+Interface\+::get\+X\+Max (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Get domain bounds. Used this for debugging sometimes ~\newline
+inputs\+: none ~\newline
+return\+: x\+Max \mbox{\Hypertarget{classfluidInterface_a34689031ca7a3f5be8a90ee90356f2b7}\label{classfluidInterface_a34689031ca7a3f5be8a90ee90356f2b7}} 
+\index{fluid\+Interface@{fluid\+Interface}!get\+X\+Min@{get\+X\+Min}}
+\index{get\+X\+Min@{get\+X\+Min}!fluid\+Interface@{fluid\+Interface}}
+\subsubsection{\texorpdfstring{get\+X\+Min()}{getXMin()}}
+{\footnotesize\ttfamily double fluid\+Interface\+::get\+X\+Min (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Get domain bounds. Used this for debugging sometimes ~\newline
+inputs\+: none ~\newline
+return\+: x\+Min \mbox{\Hypertarget{classfluidInterface_a8032c45eaa5da27d5e58481b1712ea8a}\label{classfluidInterface_a8032c45eaa5da27d5e58481b1712ea8a}} 
+\index{fluid\+Interface@{fluid\+Interface}!get\+Y\+Max@{get\+Y\+Max}}
+\index{get\+Y\+Max@{get\+Y\+Max}!fluid\+Interface@{fluid\+Interface}}
+\subsubsection{\texorpdfstring{get\+Y\+Max()}{getYMax()}}
+{\footnotesize\ttfamily double fluid\+Interface\+::get\+Y\+Max (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Get domain bounds. Used this for debugging sometimes ~\newline
+inputs\+: none ~\newline
+return\+: y\+Max \mbox{\Hypertarget{classfluidInterface_ae0f8e75e78e169a766fd51f30ef89d06}\label{classfluidInterface_ae0f8e75e78e169a766fd51f30ef89d06}} 
+\index{fluid\+Interface@{fluid\+Interface}!get\+Y\+Min@{get\+Y\+Min}}
+\index{get\+Y\+Min@{get\+Y\+Min}!fluid\+Interface@{fluid\+Interface}}
+\subsubsection{\texorpdfstring{get\+Y\+Min()}{getYMin()}}
+{\footnotesize\ttfamily double fluid\+Interface\+::get\+Y\+Min (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Get domain bounds. Used this for debugging sometimes ~\newline
+inputs\+: none ~\newline
+return\+: y\+Min \mbox{\Hypertarget{classfluidInterface_acf05896dd2ad5e6c43d4e4c77098b5fa}\label{classfluidInterface_acf05896dd2ad5e6c43d4e4c77098b5fa}} 
+\index{fluid\+Interface@{fluid\+Interface}!initialize@{initialize}}
+\index{initialize@{initialize}!fluid\+Interface@{fluid\+Interface}}
+\subsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily void fluid\+Interface\+::initialize (\begin{DoxyParamCaption}\item[{const Initial\+Func \&}]{f }\end{DoxyParamCaption})}
+
+Sets initial level set function data using an Initial\+Func from the level set code ~\newline
+Inputs\+: Initial\+Func f -\/ object specifying interface shape from the level set code. Other shapes found in Level\+Set/src/initfuncs/ ~\newline
+Result\+: the \char`\"{}phi\char`\"{} slice of level set data is set to a signed distance function with zero level set on the given shape. \mbox{\Hypertarget{classfluidInterface_ad524110f1c5af241e357fac2c7321933}\label{classfluidInterface_ad524110f1c5af241e357fac2c7321933}} 
+\index{fluid\+Interface@{fluid\+Interface}!name\+To\+Indx@{name\+To\+Indx}}
+\index{name\+To\+Indx@{name\+To\+Indx}!fluid\+Interface@{fluid\+Interface}}
+\subsubsection{\texorpdfstring{name\+To\+Indx()}{nameToIndx()}}
+{\footnotesize\ttfamily int fluid\+Interface\+::name\+To\+Indx (\begin{DoxyParamCaption}\item[{const string}]{slice }\end{DoxyParamCaption})}
+
+Returns the \char`\"{}slice index\char`\"{} corresponding to a valid named slice. Slices are named by strings in the constructor. ~\newline
+input\+: string slice -\/ name of a slice of the level set data ~\newline
+return\+: k-\/index corresponding to that slice in the level set code. Note\+: An invalid string will throw an error. \mbox{\Hypertarget{classfluidInterface_a05ce87aa6e5aeb08a62067b0122e5956}\label{classfluidInterface_a05ce87aa6e5aeb08a62067b0122e5956}} 
+\index{fluid\+Interface@{fluid\+Interface}!set\+Delta\+Width@{set\+Delta\+Width}}
+\index{set\+Delta\+Width@{set\+Delta\+Width}!fluid\+Interface@{fluid\+Interface}}
+\subsubsection{\texorpdfstring{set\+Delta\+Width()}{setDeltaWidth()}}
+{\footnotesize\ttfamily void fluid\+Interface\+::set\+Delta\+Width (\begin{DoxyParamCaption}\item[{const double}]{eps }\end{DoxyParamCaption})}
+
+Set the width of the discrete delta function used in computing surface tension as a body force. ~\newline
+inputs\+: double eps -\/ width to use ~\newline
+result\+: m\+Eps set to eps. \mbox{\Hypertarget{classfluidInterface_a0d4ca41c526fb3af9fc2d7da418d4569}\label{classfluidInterface_a0d4ca41c526fb3af9fc2d7da418d4569}} 
+\index{fluid\+Interface@{fluid\+Interface}!set\+Speed@{set\+Speed}}
+\index{set\+Speed@{set\+Speed}!fluid\+Interface@{fluid\+Interface}}
+\subsubsection{\texorpdfstring{set\+Speed()}{setSpeed()}}
+{\footnotesize\ttfamily void fluid\+Interface\+::set\+Speed (\begin{DoxyParamCaption}\item[{const \hyperlink{classstokesGrid}{stokes\+Grid} $\ast$}]{s\+Grid }\end{DoxyParamCaption})}
+
+Velocity extension routine. Extrapolates normal velocity at the interface to the rest of the domain by following grad phi. Note\+: This function assumes x and y derivatives of phi have already been computed and stored in \char`\"{}phi\+\_\+x\char`\"{} and \char`\"{}phi\+\_\+y\char`\"{} slices. This happens automatically if surface tension has been computed earlier in the timestep. ~\newline
+Inputs\+: \hyperlink{classstokesGrid}{stokes\+Grid} s\+Grid -\/ a \hyperlink{classstokesGrid}{stokes\+Grid} object whose velocity data will be used to compute the interface speed~\newline
+Result\+: the \char`\"{}speed\char`\"{} slice of the level set data contains the extensional velocity F and \char`\"{}phi\char`\"{} can now be updated. \mbox{\Hypertarget{classfluidInterface_a838e21b6c55ca2ee2fe726edda5d3aca}\label{classfluidInterface_a838e21b6c55ca2ee2fe726edda5d3aca}} 
+\index{fluid\+Interface@{fluid\+Interface}!set\+ST@{set\+ST}}
+\index{set\+ST@{set\+ST}!fluid\+Interface@{fluid\+Interface}}
+\subsubsection{\texorpdfstring{set\+S\+T()}{setST()}}
+{\footnotesize\ttfamily void fluid\+Interface\+::set\+ST (\begin{DoxyParamCaption}\item[{const double}]{sigma }\end{DoxyParamCaption})}
+
+Set the surface tension parameter. ~\newline
+inputs\+: double sigma -\/ surface tension parameter ~\newline
+result\+: m\+Sigma set to sigma. \mbox{\Hypertarget{classfluidInterface_ac1923b87f580cee256b6f12136970acc}\label{classfluidInterface_ac1923b87f580cee256b6f12136970acc}} 
+\index{fluid\+Interface@{fluid\+Interface}!sgn@{sgn}}
+\index{sgn@{sgn}!fluid\+Interface@{fluid\+Interface}}
+\subsubsection{\texorpdfstring{sgn()}{sgn()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+int fluid\+Interface\+::sgn (\begin{DoxyParamCaption}\item[{T}]{val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfluidInterface_ac4422637e35d3bd4f0a08c3b641470f5}\label{classfluidInterface_ac4422637e35d3bd4f0a08c3b641470f5}} 
+\index{fluid\+Interface@{fluid\+Interface}!upwind\+Advance@{upwind\+Advance}}
+\index{upwind\+Advance@{upwind\+Advance}!fluid\+Interface@{fluid\+Interface}}
+\subsubsection{\texorpdfstring{upwind\+Advance()}{upwindAdvance()}}
+{\footnotesize\ttfamily void fluid\+Interface\+::upwind\+Advance (\begin{DoxyParamCaption}\item[{const double}]{dt }\end{DoxyParamCaption})}
+
+Use upwinding to advance the interface according to speed stored in the \char`\"{}speed\char`\"{} slice~\newline
+Inputs\+: dt -\/ the timestep to use ~\newline
+result\+: \char`\"{}phi\char`\"{} data updated according to the upwind scheme 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{fluidInterface_8hpp}{fluid\+Interface.\+hpp}\item 
+\hyperlink{fluidInterface_8cpp}{fluid\+Interface.\+cpp}\end{DoxyCompactItemize}

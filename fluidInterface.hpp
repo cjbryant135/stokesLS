@@ -24,6 +24,10 @@ Author: Colton Bryant
 using namespace std;
 using namespace levelset;
 
+/**
+* A class to interact with Prof. Chopp's level set library. Used to compute surface tension forces, compute the 
+* velocity extension, and update the interface location.
+*/
 class fluidInterface
 {
 public:

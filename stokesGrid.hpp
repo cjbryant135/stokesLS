@@ -15,7 +15,11 @@ Author: Colton Bryant
 #include<string>
 
 using namespace std;
-
+/**
+* A generic class for solving Stokes equations in 2D with periodic boundary conditions in x and 
+* no slip/no penetration conditions in y. Wall velocities and general body force terms can be 
+* applied. 
+*/
 class stokesGrid
 {
 static const int MAXITS = 1e5; //max iterations for the stokes solver

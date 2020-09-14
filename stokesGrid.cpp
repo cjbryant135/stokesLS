@@ -10,41 +10,145 @@ Author: Colton Bryant
 #include "stokesGrid.hpp"
 
 //one-liners
+/**
+* Sets the wall velocity at y=yMax. Should be called during problem setup. \n
+* Inputs: double val - the velocity you wish to set \n
+* Result: uHigh set to val  
+*/
 void stokesGrid::setUppWallVelocity(const double val) {uHigh=val;} //upper wall velocity
+/**
+* Sets the wall velocity at y=yMin. Should be called during problem setup. \n 
+* Inputs: double val - the velocity you wish to set \n
+* Result: uLow set to val
+*/
 void stokesGrid::setLowWallVelocity(const double val) {uLow =val;} //lower wall velocity
-
+/**
+* Sets the relaxation parameter used in solving the momentum equation. Should be set during problem setup. \n
+* Inputs: double val - the parameter to be used \n
+* Result: omegaU set to val
+*/
 void stokesGrid::setOmegaU(const double val) {omegaU=val;} //momentum equation relaxation parameter
+/**
+* sets the relaxation parameter used in the pressure update. should be set during problem setup. \n
+* inputs: double val - the parameter to be used \n
+* result: omegaP set to val
+*/
 void stokesGrid::setOmegaP(const double val) {omegaP=val;} //pressure equation relaxation parameter
+/**
+* sets the tolerance for the SOR solver. should be set during problem setup. \n
+* inputs: double val - the parameter to be used \n
+* result: tol set to val
+*/
 void stokesGrid::setTol(const double val) {tol=val;} //tolerance for the iterative method
 
 //grid point locations (xC = x-center location, xF = x-face location)
+/**
+* x coordinate of cell center. \n
+* inputs: int i - index of cell \n
+* return: x-coordinate of cell center
+*/
 double stokesGrid::xC(const int i) const {return mXMin+(i+0.5)*dx;}
+/**
+* y coordinate of cell center. \n
+* inputs: int j - index of cell \n
+* return: y-coordinate of cell center
+*/
 double stokesGrid::yC(const int j) const {return mYMin+(j+0.5)*dy;}
+/**
+* x coordinate of cell face. \n
+* inputs: int i - index of cell \n
+* return: x-coordinate of cell face
+*/
 double stokesGrid::xF(const int i) const {return mXMin+i*dx;}
+/**
+* y coordinate of cell face. \n
+* inputs: int j - index of cell \n
+* return: y-coordinate of cell face
+*/
 double stokesGrid::yF(const int j) const {return mXMin+j*dy;}
 
 
 //functions for accessing flow data
+/**
+* x-velocity value. \n
+* inputs: int i, int j - index of cell \n
+* return: x-component of velocity field 
+*/
 double stokesGrid::u(const int i, const int j) const {return flowData[uI(i,j)];}
+/**
+* y-velocity value. \n
+* inputs: int i, int j - index of cell \n
+* return: y-component of velocity field 
+*/
 double stokesGrid::v(const int i, const int j) const {return flowData[vI(i,j)];}
+/**
+* pressure value. \n
+* inputs: int i, int j - index of cell \n
+* return: pressure in the cell
+*/
 double stokesGrid::p(const int i, const int j) const {return flowData[pI(i,j)];}
 
+/**
+* Converts i,j index to index in flowData array for x-velocity \n
+* inputs: int i, int j - index of cell \n
+* return: index of this value in flowData
+*/
 int stokesGrid::uI(const int i, const int j) const {return i*(mNy-1)+j;}
+/**
+* Converts i,j index to index in flowData array for y-velocity \n
+* inputs: int i, int j - index of cell \n
+* return: index of this value in flowData
+*/
 int stokesGrid::vI(const int i, const int j) const {return vStart+i*mNy+j;}
+/**
+* Converts i,j index to index in flowData array for pressure \n
+* inputs: int i, int j - index of cell \n
+* return: index of this value in flowData
+*/
 int stokesGrid::pI(const int i, const int j) const {return pStart+i*(mNy-1)+j;}
 
 
 //functions to access body force data
+/**
+* Returns the x-component of the body force here\n
+* inputs: int i, int j - index of cell \n
+* return: x body force here
+*/
 double stokesGrid::fx(const int i, const int j) {return bodyXData[i*(mNy-1)+j];}
+/**
+* Returns the y-component of the body force here\n
+* inputs: int i, int j - index of cell \n
+* return: y body force here
+*/
 double stokesGrid::fy(const int i, const int j) {return bodyYData[i*mNy+j];}
 
 //functions to set body force data 
+/**
+* Sets x body force in cell i,j \n
+* inputs: int i, int j - index of cell; double val - value to set \n
+* result: x-component of body force at index i,j set to val
+*/
 void stokesGrid::setFX(const int i, const int j, const double val) {bodyXData[i*(mNy-1)+j] = val;}
+/**
+* Sets y body force in cell i,j \n
+* inputs: int i, int j - index of cell; double val - value to set \n
+* result: y-component of body force at index i,j set to val
+*/
 void stokesGrid::setFY(const int i, const int j, const double val) {bodyYData[i*mNy+j] = val;}
 
 //function to turn on verbose output
+/**
+* Turns on residual information for the Stokes solver \n
+* inputs: none \n
+* result: verbose set to true; any call of the "solve" function will write residual information to the terminal throughout the update
+*/
 void stokesGrid::turnOnVerbose() {verbose=true;}
 //constructor
+/**
+*	Constructor for the Stokes grid. Specifies domain/grid size, allocates storage, and specifies default values for parameters. \n
+*	Inputs: nx,ny - discrete grid size \n
+*	xMin, xMax, yMin, yMax - bounds of the domain \n
+*/
 stokesGrid::stokesGrid(const int nx,
 								const int ny,
 								const double xMin,
@@ -88,8 +192,9 @@ stokesGrid::stokesGrid(const int nx,
 }
 
 //solver
-/*
-Uses a modified SOR method to solve the stokes equations.
+/**
+* Uses a modified SOR method to solve the stokes equations. \n
+* Further details of the solve can be found in the mathematical documentation. 
 */
 void stokesGrid::solve() {
 	int count = 0;
@@ -189,6 +294,9 @@ void stokesGrid::solve() {
 }
 
 //for forcing the solver into the loop
+/**
+* Sets residuals to large values to force us into the while loop in solve.
+*/
 void stokesGrid::makeResidualsHuge() {
 	maxURes = 1e10;
 	maxVRes = 1e10;
@@ -196,6 +304,9 @@ void stokesGrid::makeResidualsHuge() {
 }
 
 //sets residuals to zero
+/**
+* Sets all maximum residuals back to zero. Done before each SOR update. 
+*/
 void stokesGrid::zeroOutResiduals() {
 	maxURes = 0.;
 	maxVRes = 0.;
@@ -203,12 +314,22 @@ void stokesGrid::zeroOutResiduals() {
 }
 
 //checks for convergence
+/**
+* Check convergence of the SOR solver. 
+*/
 bool stokesGrid::isConverged() {
 	return maxURes < tol && maxVRes < tol && maxPRes < tol;
 }
 
 //interpolation routines
 //generic bilinear interpolation routine
+/**
+* Generic bilinear interpolation routine. \n
+* inputs: a11, a12, a21, a22 - data given on four corners of a unit square \n
+* ifrac, jfrac - values between 0 and 1 specifying the location to interpolate to. \n
+* e.g. ifrac = 0.5, jfrac = 0.75 will interpolate to the point (0.5, 0.75) \n
+* return: interpolated value at the given location
+*/
 double stokesGrid::bilin(const double a11, const double a12, const double a21, const double a22, 
 	const double ifrac, const double jfrac) const 
 {
@@ -218,6 +339,13 @@ double stokesGrid::bilin(const double a11, const double a12, const double a21, c
 		ifrac*jfrac*a22;
 }
 //flow variable interpolation
+/**
+* Bilinear interpolation for the x-velocity. \n
+* Converts a given point (x,y) to an x-velocity cell of the staggered grid. Then uses bilin to interpolate. Note: 
+* this function accounts for the BCs. \n
+* inputs: double x,y - location in the domain \n
+* return: interpolated value of u(x,y) \n
+*/
 double stokesGrid::uB(const double x, const double y) const {
 	int i, j, iP;
 	double ifrac, jfrac;
@@ -240,6 +368,13 @@ double stokesGrid::uB(const double x, const double y) const {
 		return bilin(u(i,j), u(i,j+1), u(i+1,j), u(i+1,j+1), ifrac, jfrac);
 	}
 }
+/**
+* Bilinear interpolation for the y-velocity. \n
+* Converts a given point (x,y) to an x-velocity cell of the staggered grid. Then uses bilin to interpolate. Note: 
+* this function accounts for the BCs. \n
+* inputs: double x,y - location in the domain \n
+* return: interpolated value of v(x,y) \n
+*/
 double stokesGrid::vB(const double x, const double y) const {
 	int i, j, iP;
 	double ifrac, jfrac;
@@ -255,6 +390,13 @@ double stokesGrid::vB(const double x, const double y) const {
 	return bilin(v(i,j), v(i,j+1), v(iP,j), v(iP, j+1), ifrac, jfrac);
 	
 }
+/**
+* Bilinear interpolation for the pressure. \n
+* Converts a given point (x,y) to an x-velocity cell of the staggered grid. Then uses bilin to interpolate. Note:
+* due to lack of pressure data at y=ymin, y=ymax, pressure cannot be interpolated to the upper/lower walls. \n
+* inputs: double x,y - location in the domain \n
+* return: interpolated value of p(x,y) \n
+*/
 double stokesGrid::pB(const double x, const double y) const {
 	int i, j, iP;
 	double ifrac, jfrac;
@@ -275,6 +417,18 @@ double stokesGrid::pB(const double x, const double y) const {
 
 
 //data dumps
+/**
+* Writes velocity and pressure data to binary files. \n
+* Creates 3 output files, one for x-velocity, one for y-velocity, one for pressure \n
+* Each file contains the following data: \n
+* integer xLen: the number of grid points in x for this array \n
+* integer yLen: the number of grid points in y for this array \n
+* double data: an xLen*yLen length array of the data \n
+* double coords: an xLen+yLen length array containing the x then y coordinates of nodes where this data was stored in the staggered grid. \n
+* \n
+* inputs: string uOut, vOut, pOut - filenames for the data to be written to.
+* result: data written as described to these files in binary form
+*/
 void stokesGrid::dumpFlowData(string uOut, string vOut, string pOut) {
 	FILE* uFile;
 	FILE* vFile;
@@ -329,7 +483,9 @@ void stokesGrid::dumpFlowData(string uOut, string vOut, string pOut) {
 	fclose(vFile);
 	fclose(pFile);
 }
-
+/**
+* Writes the x-coordinate of the body force. See dumpFlowData for format information.
+*/
 void stokesGrid::dumpFX(string fxOut) {
 	FILE* fxFile;
 	fxFile = fopen(fxOut.c_str(), "w");
@@ -353,6 +509,9 @@ void stokesGrid::dumpFX(string fxOut) {
 	fclose(fxFile);
 }
 
+/**
+* Writes the y-coordinate of the body force. See dumpFlowData for format information.
+*/
 void stokesGrid::dumpFY(string fyOut) {
 	FILE* fyFile;
 	fyFile = fopen(fyOut.c_str(), "w");
@@ -378,6 +537,9 @@ void stokesGrid::dumpFY(string fyOut) {
 
 
 //destructor
+/**
+* Deallocates storage. 
+*/
 stokesGrid::~stokesGrid(void) {
 	if(flowData) delete[] flowData;
 	if(bodyXData) delete[] bodyXData;

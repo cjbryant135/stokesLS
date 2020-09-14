@@ -9,21 +9,67 @@ Author: Colton Bryant
 #include "fluidInterface.hpp"
 
 //one-liners
+/**
+* Set the surface tension parameter. \n
+* inputs: double sigma - surface tension parameter \n
+* result: mSigma set to sigma. 
+*/
 void fluidInterface::setST(const double sigma) {mSigma = sigma;} //set surface tension
+/**
+* Set the width of the discrete delta function used in computing surface tension as a body force. \n
+* inputs: double eps - width to use \n
+* result: mEps set to eps. 
+*/
 void fluidInterface::setDeltaWidth(const double eps) {mEps = eps;}; //width of the discrete delta used in surface tension calculations
 
 //getters for domain size
+/**
+* Get domain bounds. Used this for debugging sometimes \n
+* inputs: none \n
+* return: xMin 
+*/
 double fluidInterface::getXMin() {return grid->X(0);} 
+/**
+* Get domain bounds. Used this for debugging sometimes \n
+* inputs: none \n
+* return: yMin 
+*/
 double fluidInterface::getYMin() {return grid->Y(0);}
+/**
+* Get domain bounds. Used this for debugging sometimes \n
+* inputs: none \n
+* return: xMax 
+*/
 double fluidInterface::getXMax() {return grid->X(mNx-1);}
+/**
+* Get domain bounds. Used this for debugging sometimes \n
+* inputs: none \n
+* return: yMax 
+*/
 double fluidInterface::getYMax() {return grid->Y(mNy-1);}
 
 //get the index for a given slice in the level set code
+/**
+* Returns the "slice index" corresponding to a valid named slice. Slices are named by strings in the constructor. \n
+* input: string slice - name of a slice of the level set data \n
+* return: k-index corresponding to that slice in the level set code. Note: An invalid string will throw an error.
+*/
 int fluidInterface::nameToIndx(const string slice) {return dIndx.at(slice);} //use "at" so an error is thrown for invalid slice names
 //dump a named slice of the level set code. See constructor for available names
+/**
+* Writes a named slice of the level set data to file. \n
+* input: string slice - name of a slice of the level set data, string filename - filename where data is to be written \n
+* result: level set data for the given slice is written to file. See LevelSet/src/um2io.cpp for details of the output file.
+*/
 void fluidInterface::dumpSlice(const string slice, const string filename) {grid->WriteBinary(filename, nameToIndx(slice));}
 
 //constructor
+/**
+* Creates the level set grid for our model of the fluid/fluid interface. A map is used to name each "slice" of the level set data. \n
+* Inputs: nx, ny - discrete grid size \n
+* xMin, xMax, yMin, yMax - domain bounds \n
+* sigma - surface tension \n
+*/
 fluidInterface::fluidInterface(	const int nx,
 											const int ny,
 											const double xMin,
@@ -73,17 +119,19 @@ fluidInterface::fluidInterface(	const int nx,
 }
 
 //initialize the level set function
-/*
-Inputs: InitialFunc f - object specifying interface shape from the level set code. Other shapes found in 
-								LevelSet/src/initfuncs/
+/**
+* Sets initial level set function data using an InitialFunc from the level set code \n
+* Inputs: InitialFunc f - object specifying interface shape from the level set code. Other shapes found in 
+*								LevelSet/src/initfuncs/ \n
+* Result: the "phi" slice of level set data is set to a signed distance function with zero level set on the given shape. 
 */
 void fluidInterface::initialize(const InitialFunc& f) {
 	grid->SetValues(f, dIndx.at("phi")); //call the set values function to initialize phi as a signed distance function
 }
 
-/*
-Computes the surface tension body force using a discrete delta function of width 2*eps. Note: This is computed on the 
-nodes of the level set grid and should later be interpolated to the staggered grid for use with the Stokes solver.
+/**
+* Computes the surface tension body force using a discrete delta function of width 2*eps. Note: This is computed on the 
+* nodes of the level set grid and should later be interpolated to the staggered grid for use with the Stokes solver.
 */
 void fluidInterface::computeSurfaceTension() {
 	int i,j;
@@ -114,8 +162,9 @@ void fluidInterface::computeSurfaceTension() {
 	grid->bc->Apply(sY);
 }
 
-/*
-Computes surface tension and interpolates it onto the staggered grid for use by the stokes solver
+/** 
+* Computes surface tension and interpolates it onto the staggered grid for use by the stokes solver \n
+* Inputs: sGrid - a stokesGrid object \n
 */
 void fluidInterface::computeSurfaceTension(stokesGrid* sGrid) {
 	//compute surface tension on the level set grid
@@ -136,10 +185,12 @@ void fluidInterface::computeSurfaceTension(stokesGrid* sGrid) {
 	}
 }
 
-/*
-Velocity extension routine. Extrapolates normal velocity at the interface to the rest of the domain by following grad phi.
-Note: This function assumes x and y derivatives of phi have already been computed and stored in "phi_x" and "phi_y"
-slices. This happens automatically if surface tension has been computed earlier in the timestep.
+/**
+* Velocity extension routine. Extrapolates normal velocity at the interface to the rest of the domain by following grad phi.
+* Note: This function assumes x and y derivatives of phi have already been computed and stored in "phi_x" and "phi_y"
+* slices. This happens automatically if surface tension has been computed earlier in the timestep. \n
+* Inputs: stokesGrid sGrid - a stokesGrid object whose velocity data will be used to compute the interface speed\n
+* Result: the "speed" slice of the level set data contains the extensional velocity F and "phi" can now be updated.
 */
 void fluidInterface::setSpeed(const stokesGrid* sGrid) {
 	//compute norm grad phi
@@ -216,8 +267,14 @@ void fluidInterface::setSpeed(const stokesGrid* sGrid) {
 	grid->bc->Apply(dIndx.at("speed"));
 
 }
-/*
-Uses Newtons method to find the closest point on the interface and the distance to it
+/**
+* Uses Newtons method to find the closest point on the interface to a given grid point and the distance to it \n
+* Inputs: Bicubic* fit - pointer to a bicubic fit of the level set data near the interface \n
+	xi, yj - Location of the grid point we are computing the distance to \n
+	xMin, xMax, yMin, yMax - Corners of the grid cell of interest \n
+	xC, yC - Location of the root found by the Newton's method (passed by reference for use later) \n
+	clean - set to true if the newton's method converges in maxIts iterations AND the root found is inside the current grid cell \n
+* Return: distance to the interface
 */
 double fluidInterface::distToInt(levelset::Bicubic* fit, const double xi, const double yj, const double xMin, const double xMax, 
 	const double yMin, const double yMax, double &xC, double &yC, bool &clean) 
@@ -276,8 +333,10 @@ double fluidInterface::distToInt(levelset::Bicubic* fit, const double xi, const 
 
 }
 
-/*
-Use upwinding to advance the interface according to speed stored in the "speed" slice
+/**
+* Use upwinding to advance the interface according to speed stored in the "speed" slice\n
+* Inputs: dt - the timestep to use \n
+* result: "phi" data updated according to the upwind scheme
 */
 void fluidInterface::upwindAdvance(const double dt) {
 	int i,j;
@@ -308,14 +367,9 @@ void fluidInterface::upwindAdvance(const double dt) {
 
 }
 
-
-
-
-
-
-
-
-
+/**
+* Deallocates the level set data
+*/
 fluidInterface::~fluidInterface() {
 	if(grid) delete grid;
 }
