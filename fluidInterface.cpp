@@ -1,8 +1,6 @@
 /*
 Definitions for the fluid interface class.
 
-Notes: It is assumed that boundary conditions are periodic in x and uses linear extrapolating BCs in y. 
-
 Author: Colton Bryant
 */
 
